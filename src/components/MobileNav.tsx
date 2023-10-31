@@ -1,6 +1,5 @@
 "use client";
 
-import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server";
 import { ArrowRight, Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

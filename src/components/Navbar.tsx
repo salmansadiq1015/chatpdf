@@ -29,27 +29,33 @@ const Navbar = () => {
               <>
                 <Link
                   href="/pricing"
-                  className={buttonVariants({
-                    variant: "ghost",
-                    size: "sm",
-                  })}
+                  className={
+                    buttonVariants({
+                      variant: "ghost",
+                      size: "sm",
+                    }) + "hidden sm:flex "
+                  }
                 >
                   Pricing
                 </Link>
                 <LoginLink
-                  className={buttonVariants({
-                    variant: "ghost",
-                    size: "sm",
-                  })}
+                  className={
+                    buttonVariants({
+                      variant: "ghost",
+                      size: "sm",
+                    }) + "hidden sm:flex "
+                  }
                 >
                   Sign in
                 </LoginLink>
                 <RegisterLink
-                  className={buttonVariants({
-                    size: "sm",
-                  })}
+                  className={
+                    buttonVariants({
+                      size: "sm",
+                    }) + "sm:w-[8rem] px-1"
+                  }
                 >
-                  Get started <ArrowRight className="ml-1.5 h-5 w-5" />
+                  Get started <ArrowRight className="ml-1.5 h-5 w-4 sm:w-5 " />
                 </RegisterLink>
               </>
             ) : (
