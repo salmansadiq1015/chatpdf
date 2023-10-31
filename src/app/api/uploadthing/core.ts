@@ -3,6 +3,8 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
+import { TextLoader } from "langchain/document_loaders/fs/text";
+import { CSVLoader } from "langchain/document_loaders/fs/csv";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { getPineconeClient } from "@/lib/pinecone";
@@ -58,7 +60,18 @@ const onUploadComplete = async ({
 
     const blob = await response.blob();
 
-    const loader = new PDFLoader(blob);
+    let loader;
+
+    if (file.name.toLowerCase().endsWith(".pdf")) {
+      loader = new PDFLoader(blob);
+    } else if (file.name.toLowerCase().endsWith(".txt")) {
+      loader = new TextLoader(blob);
+    } else if (file.name.toLowerCase().endsWith(".csv")) {
+      loader = new CSVLoader(blob);
+    } else {
+      // Handle unsupported file types or notify the user
+      throw new Error("Unsupported file type");
+    }
 
     const pageLevelDocs = await loader.load();
 
@@ -83,7 +96,7 @@ const onUploadComplete = async ({
       });
     }
 
-    // vectorize and index entire document
+    // vectorize and index the entire document
     const pinecone = await getPineconeClient();
     const pineconeIndex = pinecone.Index("test");
 
@@ -118,10 +131,16 @@ const onUploadComplete = async ({
 };
 
 export const ourFileRouter = {
-  freePlanUploader: f({ pdf: { maxFileSize: "4MB" } })
+  freePlanUploader: f({
+    pdf: { maxFileSize: "4MB" },
+    text: { maxFileSize: "4MB" },
+  })
     .middleware(middleware)
     .onUploadComplete(onUploadComplete),
-  proPlanUploader: f({ pdf: { maxFileSize: "16MB" } })
+  proPlanUploader: f({
+    pdf: { maxFileSize: "16MB" },
+    text: { maxFileSize: "4MB" },
+  })
     .middleware(middleware)
     .onUploadComplete(onUploadComplete),
 } satisfies FileRouter;

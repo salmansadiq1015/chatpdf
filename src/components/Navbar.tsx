@@ -8,7 +8,7 @@ import {
 } from "@kinde-oss/kinde-auth-nextjs/server";
 import { ArrowRight } from "lucide-react";
 import UserAccountNav from "./UserAccountNav";
-import MobileNav from "./MobileNav";
+// import MobileNav from "./MobileNav";
 
 const Navbar = () => {
   const { getUser } = getKindeServerSession();
@@ -18,13 +18,13 @@ const Navbar = () => {
     <nav className="sticky h-14 inset-x-0 top-0 z-30 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
         <div className="flex h-14 items-center justify-between border-b border-zinc-200">
-          <Link href="/" className="flex z-40 font-semibold">
-            Chat<span className="text-blue-500">Doc</span>
+          <Link href="/" className="flex z-40 font-bold text-xl">
+            Chat<span className="text-blue-700">Doc</span>
           </Link>
 
-          <MobileNav isAuth={!!user} />
+          {/* <MobileNav isAuth={!!user} /> */}
 
-          <div className="hidden items-center space-x-4 sm:flex">
+          <div className=" items-center space-x-4 flex">
             {!user ? (
               <>
                 <Link
@@ -56,10 +56,12 @@ const Navbar = () => {
               <>
                 <Link
                   href="/dashboard"
-                  className={buttonVariants({
-                    variant: "ghost",
-                    size: "sm",
-                  })}
+                  // className={buttonVariants({
+                  //   variant: "ghost",
+                  //   size: "sm",
+                  // })}
+                  className="hover:bg-slate-200 py-[.3rem] px-3 rounded-md transition-all
+                  font-semibold hidden sm:block"
                 >
                   Dashboard
                 </Link>

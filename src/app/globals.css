@@ -25,7 +25,7 @@
     --ring: 221.2 83.2% 53.3%;
     --radius: 0.5rem;
   }
- 
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
@@ -79,4 +79,19 @@
 
 .scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
   border-radius: 7px;
+}
+
+*::-webkit-scrollbar {
+  width: 0.4rem;
+  height: 0.4rem;
+}
+
+*::-webkit-scrollbar-track {
+  --bg-opacity: 0.6;
+  background-color: #00000015;
+}
+*::-webkit-scrollbar-thumb {
+  --bg-opacity: 0.5;
+  background-color: #038eff;
+  border-radius: 0.3rem;
 }
