@@ -5,6 +5,8 @@ import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { TextLoader } from "langchain/document_loaders/fs/text";
 import { CSVLoader } from "langchain/document_loaders/fs/csv";
+import { DocxLoader } from "langchain/document_loaders/fs/docx";
+
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { getPineconeClient } from "@/lib/pinecone";
@@ -68,6 +70,8 @@ const onUploadComplete = async ({
       loader = new TextLoader(blob);
     } else if (file.name.toLowerCase().endsWith(".csv")) {
       loader = new CSVLoader(blob);
+    } else if (file.name.toLowerCase().endsWith(".docx")) {
+      loader = new DocxLoader(blob);
     } else {
       // Handle unsupported file types or notify the user
       throw new Error("Unsupported file type");
@@ -139,7 +143,7 @@ export const ourFileRouter = {
     .onUploadComplete(onUploadComplete),
   proPlanUploader: f({
     pdf: { maxFileSize: "16MB" },
-    text: { maxFileSize: "4MB" },
+    text: { maxFileSize: "16MB" },
   })
     .middleware(middleware)
     .onUploadComplete(onUploadComplete),

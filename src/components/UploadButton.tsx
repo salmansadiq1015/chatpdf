@@ -15,6 +15,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
   const router = useRouter();
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
+  const [file, setFile] = useState(null);
   const { toast } = useToast();
 
   const { startUpload } = useUploadThing(
@@ -57,7 +58,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
         if (validFiles.length === 0) {
           // Display an error message to the user
           console.error(
-            "Invalid file types. Please upload PDF, Word documents, CSV, or text files."
+            "Invalid file types. Please upload PDF, CSV, or text files."
           );
           return;
         }
@@ -71,7 +72,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
 
           if (!res) {
             return toast({
-              title: "Something went wrong1",
+              title: "Something went wrong",
               description: "Please try again later",
               variant: "destructive",
             });
@@ -115,7 +116,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
         >
           <div className="flex items-center justify-center h-full w-full">
             <label
-              htmlFor="dropzone-file"
+              htmlFor="dropzone-fil"
               className="flex flex-col items-center justify-center w-full h-full rounded-lg cursor-pointer bg-gray-50 hover-bg-gray-100"
             >
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -161,11 +162,12 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
               ) : null}
 
               <input
-                {...getInputProps()}
                 type="file"
+                accept=".pdf, .csv, .txt, .docx"
                 id="dropzone-file"
                 className="hidden"
                 multiple
+                {...getInputProps()}
               />
             </label>
           </div>
