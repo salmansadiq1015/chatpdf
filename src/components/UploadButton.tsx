@@ -163,7 +163,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
 
               <input
                 type="file"
-                accept=".pdf, .csv, .txt, .docx"
+                accept=".pdf, .csv, .txt, .docx, doc"
                 id="dropzone-file"
                 className="hidden"
                 multiple
@@ -192,7 +192,7 @@ const UploadButton = ({ isSubscribed }: { isSubscribed: boolean }) => {
       }}
     >
       <DialogTrigger onClick={() => setIsOpen(true)} asChild>
-        <Button>Upload PDF</Button>
+        <Button>Upload File</Button>
       </DialogTrigger>
 
       <DialogContent>

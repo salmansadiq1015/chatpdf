@@ -35,7 +35,7 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
     }
   });
 
-  console.log(fileExtensions);
+  // console.log(fileExtensions);
 
   // ------------------->
   const { mutate: deleteFile } = trpc.deleteFile.useMutation({

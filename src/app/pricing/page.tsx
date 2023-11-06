@@ -21,7 +21,7 @@ const Page = () => {
     {
       plan: "Free",
       tagline: "For small side projects.",
-      quota: 10,
+      quota: 20,
       features: [
         {
           text: "10 pages per PDF",
@@ -51,7 +51,7 @@ const Page = () => {
       quota: PLANS.find((p) => p.slug === "pro")!.quota,
       features: [
         {
-          text: "35 pages per PDF",
+          text: "50 pages per PDF",
           footnote: "The maximum amount of pages per PDF-file.",
         },
         {
