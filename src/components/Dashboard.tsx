@@ -9,6 +9,8 @@ import { format } from "date-fns";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import { getUserSubscriptionPlan } from "@/lib/stripe";
+import { HiDocumentPlus } from "react-icons/hi2";
+import MergeFIles from "./MergeFIles";
 
 interface PageProps {
   subscriptionPlan: Awaited<ReturnType<typeof getUserSubscriptionPlan>>;
@@ -49,9 +51,25 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
       setCurrentlyDeletingFile(null);
     },
   });
-
+  const [showMerge, setShowMerge] = useState<boolean>(false);
   return (
-    <main className="mx-auto max-w-7xl md:p-10 p-2">
+    <main className="mx-auto max-w-7xl md:p-10 p-2 relative ">
+      <div
+        className="absolute right-10 merge-files mt-[-2rem] mb-6"
+        title="Merge Multiple files"
+        onClick={() => setShowMerge(true)}
+      >
+        <HiDocumentPlus />
+      </div>
+      {/* -----------Merge Files-------- */}
+      {showMerge && (
+        <div className="mergefiles absolute w-full min-h-screen flex items-center justify-center">
+          <MergeFIles setShowMerge={setShowMerge} />
+        </div>
+      )}
+
+      {/* ------------- */}
+
       <div className="mt-8 flex flex-col items-start justify-between gap-4 border-b border-gray-200 pb-5 sm:flex-row sm:items-center sm:gap-0">
         <h1 className="mb-3 font-bold text-5xl text-gray-900">My Files</h1>
 
