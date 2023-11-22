@@ -3,6 +3,7 @@ import AdminLayout from "@/components/layout/AdminLayout";
 import { db } from "@/db";
 import { FaSackDollar } from "react-icons/fa6";
 import MoneyChart from "@/components/AdminSidebar/MoneyChart";
+import Image from "next/image";
 
 export default async function page() {
   const AllUser = await db.user.findMany();
@@ -41,15 +42,19 @@ export default async function page() {
               <div className=" flex items-center  gap-4">
                 <b className="text-black">Subscription:</b>
                 {!user?.stripePriceId ? (
-                  <img
+                  <Image
                     src="/unsuccess.png"
                     alt="unsuccess"
+                    width="32"
+                    height="32"
                     className="w-[2rem] h-[2rem]"
                   />
                 ) : (
-                  <img
+                  <Image
                     src="/success1.png"
                     alt="unsuccess"
+                    width="32"
+                    height="32"
                     className="w-[2rem] h-[2rem]"
                   />
                 )}

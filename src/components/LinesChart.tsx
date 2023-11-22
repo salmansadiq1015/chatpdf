@@ -86,7 +86,7 @@ const LinesChart = ({
         });
       });
     });
-  }, [fileLength]);
+  }, [fileLength, AllUser, UserFile]);
 
   if (!state) {
     // Return loading state or placeholder while the chart is being loaded

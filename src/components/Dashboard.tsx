@@ -16,6 +16,7 @@ import Papa from "papaparse";
 
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { AiOutlineCloseCircle, AiOutlineCloudDownload } from "react-icons/ai";
+import Image from "next/image";
 
 interface PageProps {
   subscriptionPlan: Awaited<ReturnType<typeof getUserSubscriptionPlan>>;
@@ -170,9 +171,11 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
                 style={{ border: "3px dotted rgb(0, 255, 0)" }}
               >
                 {mergedFile ? (
-                  <img
+                  <Image
                     src="/success.png"
                     alt="success"
+                    width={65}
+                    height={65}
                     className="w-[4rem] h-[4rem]"
                   />
                 ) : (
@@ -252,27 +255,33 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
                       <div className="h-10 w-10 flex items-center justify-center flex-shrink-0 rounded-full ">
                         {" "}
                         {file?.url.endsWith(".pdf") ? (
-                          <img
+                          <Image
                             src="/pdf.png"
                             alt="PDF"
+                            width={37}
+                            height={37}
                             style={{ width: "2.3rem", height: "2.3rem" }}
                           />
                         ) : (
                           ""
                         )}
                         {file?.url.endsWith(".csv") ? (
-                          <img
+                          <Image
                             src="/csv.png"
                             alt="PDF"
+                            width={43}
+                            height={45}
                             style={{ width: "2.6rem", height: "2.7rem" }}
                           />
                         ) : (
                           ""
                         )}
                         {file?.url.endsWith(".txt") ? (
-                          <img
+                          <Image
                             src="/txt.png"
                             alt="PDF"
+                            width={42}
+                            height={40}
                             style={{ width: "2.5rem", height: "2.3rem" }}
                           />
                         ) : (

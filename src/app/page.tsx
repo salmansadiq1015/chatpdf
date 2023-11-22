@@ -7,6 +7,7 @@ import { BiSolidBot } from "react-icons/bi";
 import { BsDatabaseFill } from "react-icons/bs";
 import Link from "next/link";
 import Pricing from "./pricing/page";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -54,9 +55,11 @@ export default function Home() {
           </Link>
         </div>
         <div className="image z-30 w-full h-full">
-          <img
+          <Image
             src="/Page1.webp"
             alt="preview"
+            width="500"
+            height="352"
             className="w-full h-[22rem] sm:h-full"
           />
         </div>
@@ -94,9 +97,11 @@ export default function Home() {
           <div className="chat-steps mt-[2rem] px-0 w-full">
             <div className="chat-step flex flex-col gap-4 items-center">
               <div className="step-image">
-                <img
+                <Image
                   src="/step1.webp"
                   alt="step1"
+                  width="500"
+                  height="320"
                   className="p-[.5rem] hover:scale-105 transition-all"
                 />
               </div>
@@ -105,16 +110,18 @@ export default function Home() {
               </h2>
               <h1 className="text-4xl text-blue-600 font-extrabold ">01</h1>
               <p className="text-center text-zinc-500 font-normal ">
-                Register for your account now to access our platform's full
+                Register for your account now to access our platform&apos;s full
                 range of features and benefits.
               </p>
             </div>
             {/* Step 2 */}
             <div className="chat-step flex flex-col gap-4 items-center">
               <div className="step-image2">
-                <img
+                <Image
                   src="/step2.webp"
                   alt="step2"
+                  width="500"
+                  height="320"
                   className="p-[.5rem] hover:scale-105 transition-all"
                 />
               </div>
@@ -131,9 +138,11 @@ export default function Home() {
             {/* Step 3 */}
             <div className="chat-step chat-step flex flex-col gap-4 items-center">
               <div className="step-image3">
-                <img
+                <Image
                   src="/step3.webp"
                   alt="step3"
+                  width="500"
+                  height="320"
                   className="p-[.5rem] hover:scale-105 transition-all"
                 />
               </div>
@@ -144,7 +153,7 @@ export default function Home() {
 
               <p className="text-center text-zinc-500 font-normal ">
                 Experience sheer simplicity! Discover the lightning-fast ChatDoc
-                today; it's a matter of mere seconds to get started.
+                today; it&apos;s a matter of mere seconds to get started.
               </p>
             </div>
           </div>
@@ -156,9 +165,11 @@ export default function Home() {
             border: "1px solid #ccc",
           }}
         >
-          <img
+          <Image
             src="/file-upload-preview.jpg"
             alt="prew"
+            width="1200"
+            height="320"
             className="rounded-lg border border-zinc-200"
           />
         </div>
@@ -172,7 +183,7 @@ export default function Home() {
       >
         <div className="section3-comtent flex flex-col items-center justify-center gap-4 py-[3rem]">
           <h1
-            className="text-5xl font-bold text-white px-[1rem] sm:px-[4rem] text-center "
+            className="text-3xl font-bold text-white px-[1rem] sm:text-5xl sm:px-[4rem] text-center "
             style={{ textShadow: "-1px 1px 0px #000" }}
           >
             An Intuitive AI Chatbot Platform for Seamless Conversations.
@@ -256,8 +267,8 @@ export default function Home() {
                 Chat History
               </h3>
               <p className="text-base text-zinc-500 text-justify ">
-                Take a look at each and every conversation that's taken place
-                within any of your chatbots.
+                Take a look at each and every conversation that&apos;s taken
+                place within any of your chatbots.
               </p>
               <span className="w-[10rem] h-[2px] bg-blue-500 rounded-md"></span>
             </div>
@@ -310,9 +321,11 @@ export default function Home() {
             border: "1px solid #ccc",
           }}
         >
-          <img
+          <Image
             src="/dashboard-preview.jpg"
             alt="prew"
+            width={1200}
+            height={350}
             className="rounded-lg border border-zinc-200 w-full h-[25rem] sm:h-full"
           />
         </div>
@@ -322,7 +335,7 @@ export default function Home() {
       <section className="w-full min-h-screen z-30 bg-blue-200 mt-[0rem] sm:mt-[6rem] py-[3rem] rounded-sm shadow-2xl">
         <div className="section6-content flex flex-col gap-4 items-center justify-center">
           <h1 className="text-2xl sm:text-4xl font-bold text-black text-center">
-            Here's Just A Few Ways You Can Use our Chatbots
+            Here&apos;s Just A Few Ways You Can Use our Chatbots
           </h1>
           <p className="text-lg sm:text-2xl font-light text-blue-500 text-center">
             We have a range of plans for businesses at all stages from startups
@@ -340,9 +353,10 @@ export default function Home() {
               <span className="font-medium">PERSONAL ASSISTANT</span>
             </h2>
             <p className="text-base text-zinc-200 font-light mt-3 text-justify">
-              Once you've uploaded all of your data, in the form of any CSV,
-              PDF, file or text you can talk with your chatbot and ask anything
-              you want to quickly find the answers you're looking for.
+              Once you&apos;ve uploaded all of your data, in the form of any
+              CSV, PDF, file or text you can talk with your chatbot and ask
+              anything you want to quickly find the answers you&apos;re looking
+              for.
             </p>
             <p className="text-base text-zinc-200 font-light mt-3 text-justify">
               You can also generate useful content, using the data to help you
@@ -350,14 +364,16 @@ export default function Home() {
               posts, or even blog posts.
             </p>
             <p className="text-base text-zinc-200 font-light mt-3 text-justify">
-              It's like having Chat GPT at your fingertips, but it specialises
-              in just your business and your needs.
+              It&apos;s like having Chat GPT at your fingertips, but it
+              specialises in just your business and your needs.
             </p>
           </div>
           <div className="box">
-            <img
-              src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs3/227602492/original/7d629869ec0579abc6e82d197e006af9aa3ec9a0/do-data-entry-jobs.jpg"
+            <Image
+              src="/c1.webp"
               alt="case1"
+              width={600}
+              height={330}
               className="w-full h-full"
             />
           </div>
@@ -366,9 +382,11 @@ export default function Home() {
         {/* case1 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 mt-[3rem] bg-blue-600 ">
           <div className="">
-            <img
-              src="https://content.app-sources.com/s/18447925404601697/uploads/Images/sales_chatbot-1597650.jpeg?format=webp"
+            <Image
+              src="/c2.webp"
               alt="case1"
+              width={500}
+              height={280}
               className="w-full h-full"
             />
           </div>

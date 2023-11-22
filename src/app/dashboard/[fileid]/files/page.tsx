@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import UploadButton from "@/components/UploadButton";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout/Layout";
+import Image from "next/image";
 
 const Dashboard = () => {
   const [currentlyDeletingFile, setCurrentlyDeletingFile] = useState<
@@ -102,27 +103,33 @@ const Dashboard = () => {
                         <div className="h-10 w-10 flex items-center justify-center flex-shrink-0 rounded-full ">
                           {" "}
                           {file?.url.endsWith(".pdf") ? (
-                            <img
+                            <Image
                               src="/pdf.png"
                               alt="PDF"
+                              width="37"
+                              height="37"
                               style={{ width: "2.3rem", height: "2.3rem" }}
                             />
                           ) : (
                             ""
                           )}
                           {file?.url.endsWith(".csv") ? (
-                            <img
+                            <Image
                               src="/csv.png"
                               alt="PDF"
+                              width="37"
+                              height="37"
                               style={{ width: "2.6rem", height: "2.7rem" }}
                             />
                           ) : (
                             ""
                           )}
                           {file?.url.endsWith(".txt") ? (
-                            <img
+                            <Image
                               src="/txt.png"
                               alt="PDF"
+                              width="37"
+                              height="37"
                               style={{ width: "2.5rem", height: "2.3rem" }}
                             />
                           ) : (
