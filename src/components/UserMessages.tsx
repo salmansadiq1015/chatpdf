@@ -47,7 +47,7 @@ export default function UserMessages({ totalMessages }: UserMessagesProps) {
     const pdf = new jsPDF();
 
     // Now TypeScript should recognize the autoTable property
-    pdf.autoTable({
+    (pdf as any).autoTable({
       head: [["Text", "Created At"]],
       body: messages.map((message) => [
         message.text,
