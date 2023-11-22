@@ -8,18 +8,29 @@ import {
 } from "@kinde-oss/kinde-auth-nextjs/server";
 import { ArrowRight } from "lucide-react";
 import UserAccountNav from "./UserAccountNav";
+// import { db } from "@/db";
 // import MobileNav from "./MobileNav";
 
-const Navbar = () => {
+const Navbar = async () => {
   const { getUser } = getKindeServerSession();
   const user = getUser();
 
+  // const userId: string = user.id as string;
+
+  // const dbUser = await db.user.findFirst({
+  //   where: {
+  //     id: userId,
+  //   },
+  // });
+  // const role = dbUser?.role;
+  // console.log("Admin", role);
+
   return (
-    <nav className="sticky h-14 inset-x-0 top-0 z-30 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
+    <nav className="sticky h-16 inset-x-0 top-0 z-50 w-full border-b border-gray-200 bg-black backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
-        <div className="flex h-14 items-center justify-between border-b border-zinc-200">
-          <Link href="/" className="flex z-40 font-bold text-xl">
-            Chat<span className="text-blue-700">Doc</span>
+        <div className="flex h-16 items-center justify-between border-b border-zinc-200">
+          <Link href="/" className="flex z-40 font-bold text-white text-2xl">
+            Chat<span className="text-blue-700">Doc</span>.ai
           </Link>
 
           {/* <MobileNav isAuth={!!user} /> */}
@@ -33,7 +44,7 @@ const Navbar = () => {
                     buttonVariants({
                       variant: "ghost",
                       size: "sm",
-                    }) + "hidden sm:flex "
+                    }) + "hidden sm:flex text-white px-2"
                   }
                 >
                   Pricing
@@ -43,7 +54,7 @@ const Navbar = () => {
                     buttonVariants({
                       variant: "ghost",
                       size: "sm",
-                    }) + "hidden sm:flex "
+                    }) + "hidden sm:flex text-white px-2 "
                   }
                 >
                   Sign in
@@ -66,7 +77,7 @@ const Navbar = () => {
                   //   variant: "ghost",
                   //   size: "sm",
                   // })}
-                  className="hover:bg-slate-200 py-[.3rem] px-3 rounded-md transition-all
+                  className="hover:bg-slate-200 py-[.3rem] px-3 text-white hover:text-black rounded-md transition-all
                   font-semibold hidden sm:block"
                 >
                   Dashboard

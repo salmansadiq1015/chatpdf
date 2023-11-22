@@ -13,7 +13,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { ArrowRight, Check, HelpCircle, Minus } from "lucide-react";
 import Link from "next/link";
 
-const Page = () => {
+const Pricing = () => {
   const { getUser } = getKindeServerSession();
   const user = getUser();
 
@@ -51,12 +51,12 @@ const Page = () => {
       quota: PLANS.find((p) => p.slug === "pro")!.quota,
       features: [
         {
-          text: "50 pages per PDF",
-          footnote: "The maximum amount of pages per PDF-file.",
+          text: "100 pages per PDF, CSV, TEXT",
+          footnote: "The maximum amount of pages per PDF, CSV & TEXT file.",
         },
         {
           text: "16MB file size limit",
-          footnote: "The maximum file size of a single PDF file.",
+          footnote: "The maximum file size of a multiple PDF, CSV & TEXT file.",
         },
         {
           text: "Mobile-friendly interface",
@@ -76,7 +76,9 @@ const Page = () => {
     <>
       <MaxWidthWrapper className="mb-8 mt-24 text-center max-w-5xl">
         <div className="mx-auto mb-10 sm:max-w-lg">
-          <h1 className="text-6xl font-bold sm:text-7xl">Pricing</h1>
+          <h1 className="text-6xl font-bold sm:text-7xl">
+            Pri<span className="text-blue-600">cing</span>
+          </h1>
           <p className="mt-5 text-gray-600 sm:text-lg">
             Whether you&apos;re just trying out our service or need more,
             we&apos;ve got you covered.
@@ -117,14 +119,14 @@ const Page = () => {
 
                   <div className="flex h-20 items-center justify-center border-b border-t border-gray-200 bg-gray-50">
                     <div className="flex items-center space-x-1">
-                      <p>{quota.toLocaleString()} PDFs/mo included</p>
+                      <p>{quota.toLocaleString()} Files/mo included</p>
 
                       <Tooltip delayDuration={300}>
                         <TooltipTrigger className="cursor-default ml-1.5">
                           <HelpCircle className="h-4 w-4 text-zinc-500" />
                         </TooltipTrigger>
                         <TooltipContent className="w-80 p-2">
-                          How many PDFs you can upload per month.
+                          How many Files you can upload per month.
                         </TooltipContent>
                       </Tooltip>
                     </div>
@@ -207,4 +209,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Pricing;

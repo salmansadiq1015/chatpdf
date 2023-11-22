@@ -4,6 +4,7 @@ import Papa from "papaparse";
 import Link from "next/link";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { AiOutlineCloseCircle, AiOutlineCloudDownload } from "react-icons/ai";
+import UploadButton from "./UploadButton";
 
 type MergeFilesProps = {
   setShowMerge: (show: boolean) => void;
@@ -139,6 +140,9 @@ export default function MergeFIles({ setShowMerge }: MergeFilesProps) {
             <AiOutlineCloudDownload size="26" color="white" />
           </Link>
         )}
+      </div>
+      <div className="hidden">
+        <UploadButton />
       </div>
     </div>
   );

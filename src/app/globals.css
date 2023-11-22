@@ -101,3 +101,53 @@
   cursor: pointer;
   filter: drop-shadow(0.3rem 0.3rem 0.2rem rgba(0, 0, 0, 0.5));
 }
+.messageHistory > td,
+.messageHistory1 > th {
+  text-align: center;
+  padding: 0.4rem 0.5rem;
+  border-bottom: 2px solid #222;
+  border-left: 2px solid #222;
+  /* color: rgb(255, 0, 140); */
+}
+/* ---------------------Responsive----------- */
+/* @media (max-width: 850px) {
+  .chatHistory > table {
+    border: none;
+  }
+  .chatHistory > table > thead {
+    display: none;
+  }
+  .messageHistory > td,
+  .messageHistory1 > th {
+    border-bottom: none;
+    border-left: none;
+  }
+  .chatHistory > table,
+  .chatHistory > table tbody,
+  .chatHistory > table,
+  .chatHistory > table tbody tr,
+  .chatHistory > table tr td {
+    display: block;
+  }
+  .chatHistory > table > tbody > tr {
+    margin-bottom: 1.5rem;
+  }
+  .chatHistory table tbody tr td {
+    text-align: right;
+    position: relative;
+    padding-right: 1rem;
+  }
+
+  .chatHistory table tr td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0.5rem;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 500px) {
+  .chatHistory table tbody tr td {
+    font-size: 0.9rem;
+  }
+} */

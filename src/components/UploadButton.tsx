@@ -9,15 +9,21 @@ import { Progress } from "./ui/progress";
 import { useUploadThing } from "@/lib/uploadthing";
 import { useToast } from "./ui/use-toast";
 import { trpc } from "@/app/_trpc/client";
+import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { PDFDocument } from "pdf-lib";
 
-const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
+const UploadDropzone = ({
+  isSubscribed,
+  setIsOpen,
+}: {
+  isSubscribed: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const router = useRouter();
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
-  const [file, setFile] = useState(null);
-  const { toast } = useToast();
+
+  // const { toast } = useToast();
 
   const { startUpload } = useUploadThing(
     isSubscribed ? "proPlanUploader" : "freePlanUploader"
@@ -25,7 +31,13 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
 
   const { mutate: startPolling } = trpc.getFile.useMutation({
     onSuccess: (file) => {
-      router.push(`/dashboard/${file.id}`);
+      router.push(`/dashboard`);
+      window.location.reload();
+      setIsOpen(false);
+      toast.success("File uploaded successfully!", {
+        position: "top-center",
+        theme: "dark",
+      });
     },
     retry: true,
     retryDelay: 500,
@@ -51,7 +63,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
     <Dropzone
       multiple={true}
       onDrop={async (acceptedFiles) => {
-        const acceptedExtensions = [".pdf", ".doc", ".docx", ".csv", ".txt"];
+        const acceptedExtensions = [".pdf", ".docx", ".csv", ".txt"];
         const validFiles = acceptedFiles.filter((file) =>
           acceptedExtensions.some((ext) => file.name.endsWith(ext))
         );
@@ -59,7 +71,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
         if (validFiles.length === 0) {
           // Display an error message to the user
           console.error(
-            "Invalid file types. Please upload PDF, CSV, or text files."
+            "Invalid file types. Please upload PDF, CSV, Docx & text files."
           );
           return;
         }
@@ -72,11 +84,13 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
           const res = await startUpload([file]);
 
           if (!res) {
-            return toast({
-              title: "Something went wrong",
-              description: "Please try again later",
-              variant: "destructive",
-            });
+            return toast.error(
+              "Invalid file types. Please upload PDF, CSV & text files.",
+              {
+                position: "top-center",
+                theme: "colored",
+              }
+            );
           }
 
           const [fileResponse] = res;
@@ -84,10 +98,9 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
           const key = fileResponse?.key;
 
           if (!key) {
-            return toast({
-              title: "Something went wrong",
-              description: "Please try again later",
-              variant: "destructive",
+            return toast.error("Something went wrong, try again!", {
+              position: "top-center",
+              theme: "colored",
             });
           }
 
@@ -121,13 +134,13 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
               className="flex flex-col items-center justify-center w-full h-full rounded-lg cursor-pointer bg-gray-50 hover-bg-gray-100"
             >
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                <Cloud className="h-6 w-6 text-zinc-500 mb-2" />
+                <Cloud className="h-10 w-10 text-blue-500 mb-2" />
                 <p className="mb-2 text-sm text-zinc-700">
                   <span className="font-semibold">Click to upload</span> or drag
                   and drop
                 </p>
                 <p className="text-xs text-zinc-500">
-                  PDF (up to {isSubscribed ? "16" : "4"}MB)
+                  File (up to {isSubscribed ? "16" : "4"}MB)
                 </p>
               </div>
 
@@ -155,8 +168,8 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
                   />
                   {uploadProgress === 100 ? (
                     <div className="flex gap-1 items-center justify-center text-sm text-zinc-700 text-center pt-2">
-                      <Loader2 className="h-3 w-3 animate-spin" />
-                      Redirecting...
+                      <Loader2 className="h-3 w-3 animate-spin text-green-500" />
+                      Uploading in progress...
                     </div>
                   ) : null}
                 </div>
@@ -164,7 +177,6 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
 
               <input
                 type="file"
-                accept=".pdf, .csv, .txt, .docx, doc"
                 id="dropzone-file"
                 className="hidden"
                 multiple
@@ -193,11 +205,11 @@ const UploadButton = ({ isSubscribed }: { isSubscribed: boolean }) => {
       }}
     >
       <DialogTrigger onClick={() => setIsOpen(true)} asChild>
-        <Button>Upload File</Button>
+        <Button>+ Upload File</Button>
       </DialogTrigger>
 
       <DialogContent>
-        <UploadDropzone isSubscribed={isSubscribed} />
+        <UploadDropzone isSubscribed={isSubscribed} setIsOpen={setIsOpen} />
       </DialogContent>
     </Dialog>
   );

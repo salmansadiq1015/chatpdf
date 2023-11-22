@@ -9,12 +9,17 @@ import "simplebar-react/dist/simplebar.min.css";
 
 import { Toaster } from "@/components/ui/toaster";
 import { Metadata } from "next";
+import Footer from "@/components/Footer";
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />;
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ChatDoc",
+  title: "ChatDoc.ai",
   description: "AI Saas Application chatbase.ai ",
+  icons: "/infradev.cloud.png",
 };
 
 // export const metadata = constructMetadata()
@@ -36,6 +41,11 @@ export default function RootLayout({
           <Toaster />
           <Navbar />
           {children}
+          <Footer />
+          {/* <!-- Animation --> */}
+          <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+          <script>AOS.init();</script>
+          <ToastContainer />
         </body>
       </Providers>
     </html>
