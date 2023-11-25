@@ -34,7 +34,7 @@ export default function Sidebar({ isShow }: { isShow: any }) {
   };
 
   return (
-    <div className=" w-full min-h-screen border-r border-zinc-400">
+    <div className=" w-full min-h-screen ">
       <div
         className=" mb-4 mt-3 w-full flex items-center md:hidden  justify-end px-4"
         onClick={() => isShow(false)}
@@ -75,7 +75,7 @@ export default function Sidebar({ isShow }: { isShow: any }) {
               }`}
             >
               <PiFilesFill size="22" />
-              knowledge base
+              Knowledge Base
             </Link>
             {/*  */}
             <Link
@@ -117,16 +117,16 @@ export default function Sidebar({ isShow }: { isShow: any }) {
             </Link>
             {/*  */}
             <Link
-              href={`/dashboard/${id}/sitting`}
+              href={`/dashboard/${id}/setting`}
               className={`flex gap-1 items-center text-black rounded-md py-[6px] px-2 border  border-zinc-200
               hover:bg-blue-500 hover:text-white hover:shadow-lg transition-colors ${
-                isLinkActive(`/dashboard/${id}/sitting`)
+                isLinkActive(`/dashboard/${id}/setting`)
                   ? "bg-blue-500 text-white"
                   : ""
               }`}
             >
               <LiaCogSolid size="22" />
-              Sitting
+              Setting
             </Link>
           </nav>
         </div>

@@ -21,7 +21,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className=" flex-[.2] z-40 hidden md:block min-h-screen">
         <Sidebar isShow={setIsShow} />
       </div>
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 " style={{ borderLeft: "1px solid #999" }}>
+        {children}
+      </main>
     </div>
   );
 }

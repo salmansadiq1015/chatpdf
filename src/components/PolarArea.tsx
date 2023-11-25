@@ -47,7 +47,11 @@ const PolarAreaChart: React.FC<FileChartsProps> = ({
     };
   }, [uploadedFiles, totalQuota]);
 
-  return <canvas ref={doughnutChartRef} width="400" height="400" />;
+  return (
+    <div className="h-[220px]">
+      <canvas ref={doughnutChartRef} width="220" height="220" />
+    </div>
+  );
 };
 
 export default PolarAreaChart;

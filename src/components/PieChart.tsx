@@ -35,7 +35,11 @@ const PieChart: React.FC<PieChartProps> = ({ totalMessages }) => {
     };
   }, [totalMessages, totalLimit]);
 
-  return <canvas id="pieChart" width="400" height="400" />;
+  return (
+    <div className="h-[220px]">
+      <canvas id="pieChart" width="220" height="220" />
+    </div>
+  );
 };
 
 export default PieChart;

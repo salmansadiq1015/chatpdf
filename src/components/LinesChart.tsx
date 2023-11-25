@@ -65,21 +65,21 @@ const LinesChart = ({
               name: "All Users",
               data: Array.from(
                 { length: fileLength },
-                () => Math.floor(Math.random() * 100) + AllUser
+                () => Math.floor(Math.random() * 3) + AllUser
               ),
             },
             {
               name: "Total Files",
               data: Array.from(
                 { length: fileLength },
-                () => Math.floor(Math.random() * 100) + fileLength
+                () => Math.floor(Math.random() * 7) + fileLength
               ),
             },
             {
               name: "Your Uploads",
               data: Array.from(
                 { length: fileLength },
-                () => Math.floor(Math.random() * 100) + UserFile
+                () => Math.floor(Math.random() * 1) + UserFile
               ),
             },
           ],

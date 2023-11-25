@@ -91,7 +91,11 @@ export default async function page() {
               <h2 className="text-xl text-white font-semibold">
                 Users Analytics
               </h2>
-              <UsersAnalytics userLength={AllUser.length} />
+
+              <UsersAnalytics
+                userLength={AllUser.length}
+                totalUsers={AllUser}
+              />
             </div>
 
             <div className="flex flex-col gap-3">

@@ -39,6 +39,7 @@
     "autoprefixer": "10.4.16",
     "axios": "^1.6.0",
     "chart.js": "^4.4.0",
+    "cheerio": "^1.0.0-rc.12",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "d3-dsv": "^2.0.0",
