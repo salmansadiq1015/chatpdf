@@ -38,7 +38,7 @@ const Navbar = async () => {
           <div className=" items-center space-x-4 flex">
             {!user ? (
               <>
-                <Link
+{/*                 <Link
                   href="/pricing"
                   className={
                     buttonVariants({
@@ -48,7 +48,7 @@ const Navbar = async () => {
                   }
                 >
                   Pricing
-                </Link>
+                </Link> */}
                 <LoginLink
                   className={
                     buttonVariants({
