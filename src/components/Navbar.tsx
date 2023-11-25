@@ -38,6 +38,17 @@ const Navbar = async () => {
           <div className=" items-center space-x-4 flex">
             {!user ? (
               <>
+                {/* <Link
+                  href="/pricing"
+                  className={
+                    buttonVariants({
+                      variant: "ghost",
+                      size: "sm",
+                    }) + "hidden sm:flex text-white px-2"
+                  }
+                >
+                  Pricing
+                </Link> */}
                 <LoginLink
                   className={
                     buttonVariants({
