@@ -119,7 +119,7 @@ export const POST = async (req: NextRequest) => {
   return new StreamingTextResponse(stream);
 };
 
-// -------------------3------------>
+// // --------------2---------------->
 
 // import { db } from "@/db";
 // import { openai } from "@/lib/openai";
@@ -162,7 +162,6 @@ export const POST = async (req: NextRequest) => {
 //     },
 //   });
 
-//   // 1: vectorize message
 //   const embeddings = new OpenAIEmbeddings({
 //     openAIApiKey: process.env.OPENAI_API_KEY,
 //   });
@@ -188,35 +187,67 @@ export const POST = async (req: NextRequest) => {
 //   });
 
 //   const formattedPrevMessages = prevMessages.map((msg) => ({
-//     role: msg.isUserMessage ? "user" : "assistant",
+//     role: msg.isUserMessage ? ("user" as const) : ("assistant" as const),
 //     content: msg.text,
 //   }));
 
-//   // System message as context
-//   const systemMessage = {
-//     role: "system",
-//     content:
-//       "Use the following pieces of context to answer the user's question.",
+//   // Function to truncate text to fit within a certain token limit
+//   const truncateTextToFitModelLimit = (
+//     text: string,
+//     maxTokens: number
+//   ): string => {
+//     const tokens = text.split(/\s+/);
+//     let currentTokens = 0;
+//     let truncatedText = "";
+
+//     for (const token of tokens) {
+//       currentTokens += token.length + 1; // Add 1 for the space between tokens
+//       if (currentTokens <= maxTokens) {
+//         truncatedText += `${token} `;
+//       } else {
+//         break;
+//       }
+//     }
+
+//     return truncatedText.trim();
 //   };
 
-//   // User message
-//   const userMessage = {
-//     role: "user",
-//     content: `User input: ${message}`,
-//   };
+//   // Reduce the number of tokens in formattedPrevMessages to fit within the model's limit
+//   const truncatedPrevMessages = formattedPrevMessages.slice(0, 5); // Adjust the number as needed
 
-//   // Combine system, previous messages, and user message
-//   const allMessages = [systemMessage, ...formattedPrevMessages, userMessage];
+//   // Concatenate previous conversation and context, truncating if necessary
+//   const context = `
+//   PREVIOUS CONVERSATION:
+//   ${truncatedPrevMessages.map((message) => {
+//     if (message.role === "user") return `User: ${message.content}\n`;
+//     return `Assistant: ${message.content}\n`;
+//   })}
 
-//   // Truncate messages to fit within the token limit
-//   const truncatedMessages = truncateMessages(allMessages, 4097);
+//   \n----------------\n
 
-//   // 3.5-turbo
+//   CONTEXT:
+//   ${results.map((r) => r.pageContent).join("\n\n")}
+
+//   USER INPUT: ${message}`;
+
+//   // Truncate the context if it exceeds the model's token limit
+//   const truncatedContext = truncateTextToFitModelLimit(context, 4097); // Define this function (see above)
+
 //   const response = await openai.chat.completions.create({
 //     model: "gpt-3.5-turbo",
 //     temperature: 0,
 //     stream: true,
-//     messages: truncatedMessages,
+//     messages: [
+//       {
+//         role: "system",
+//         content:
+//           "Use the following pieces of context (or previous conversation if needed) to answer the users question in markdown format.",
+//       },
+//       {
+//         role: "user",
+//         content: truncatedContext, // Use the truncated context
+//       },
+//     ],
 //   });
 
 //   const stream = OpenAIStream(response, {
@@ -235,22 +266,4 @@ export const POST = async (req: NextRequest) => {
 //   return new StreamingTextResponse(stream);
 // };
 
-// // Function to truncate messages to fit within the token limit
-// function truncateMessages(messages: any, maxTokens: any) {
-//   let totalTokens = 0;
-//   let truncatedMessages = [];
-
-//   for (const msg of messages) {
-//     const msgTokens = msg.content.split(" ").length; // Adjust based on your tokenization logic
-//     if (totalTokens + msgTokens <= maxTokens) {
-//       truncatedMessages.push(msg);
-//       totalTokens += msgTokens;
-//     } else {
-//       break;
-//     }
-//   }
-
-//   return truncatedMessages;
-// }
-
-// ----------------------3------------------>
+// ----------------3--------------->

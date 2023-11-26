@@ -67,7 +67,9 @@ const Dashboard = () => {
             into dynamic exchanges, enabling you to share files effortlessly.
           </p>
 
-          {/* <UploadButton isSubscribed={true} /> */}
+          <div className="float-right w-full py-[2rem]">
+            {/* <UploadButton isSubscribed={true} /> */}
+          </div>
         </div>
 
         {/* -------Display All User Files--------- */}
