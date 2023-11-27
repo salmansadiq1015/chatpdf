@@ -3,6 +3,7 @@ import Providers from "@/components/Providers";
 import { cn, constructMetadata } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Comment from "@/components/Comment";
 
 import "react-loading-skeleton/dist/skeleton.css";
 import "simplebar-react/dist/simplebar.min.css";
@@ -12,6 +13,7 @@ import { Metadata } from "next";
 import Footer from "@/components/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +30,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { getUser } = getKindeServerSession();
+  const user = getUser();
+
   return (
     <html lang="en" className="light">
       <Providers>
@@ -39,7 +44,13 @@ export default function RootLayout({
         >
           <Toaster />
           <Navbar />
-          {children}
+          <div className="relative">
+            {children}
+            <div className="fixed bottom-3 right-3 z-50">
+              <Comment userId={user?.id} userEmail={user?.email} />
+            </div>
+          </div>
+
           <Footer />
           {/* <!-- Animation --> */}
           <ToastContainer />

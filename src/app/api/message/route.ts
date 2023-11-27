@@ -1,3 +1,4 @@
+import { LayoutProps } from "./../../../../.next/types/app/page";
 import { db } from "@/db";
 import { openai } from "@/lib/openai";
 import { getPineconeClient } from "@/lib/pinecone";
@@ -70,9 +71,9 @@ export const POST = async (req: NextRequest) => {
     role: msg.isUserMessage ? ("user" as const) : ("assistant" as const),
     content: msg.text,
   }));
-  // 3.5-turbo
+  // 3.5-turbo //gpt-3.5-turbo-16k
   const response = await openai.chat.completions.create({
-    model: "gpt-4",
+    model: "gpt-3.5-turbo-16k",
     temperature: 0,
     stream: true,
     messages: [

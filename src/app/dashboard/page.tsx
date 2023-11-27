@@ -16,6 +16,7 @@ const Page = async () => {
       id: user.id,
     },
   });
+
   const AllUser = await db.user.findMany();
 
   const uploadedFiles = await db.file.findMany({

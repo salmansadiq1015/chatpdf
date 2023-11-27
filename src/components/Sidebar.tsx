@@ -43,6 +43,7 @@ export default function Sidebar({ isShow }: { isShow: any }) {
       </div>
       <div className=" py-6 px-1 ">
         <Link
+          id="dashboard_btn"
           href="/dashboard"
           className="flex items-center gap-1 rounded-md py-[6px] px-2 border  border-zinc-200 text-black
              hover:bg-blue-500 hover:text-white hover:shadow-lg transition-colors"
@@ -55,6 +56,7 @@ export default function Sidebar({ isShow }: { isShow: any }) {
         <div className=" mt-6">
           <nav className="flex flex-col gap-4">
             <Link
+              id="overview"
               href={`/dashboard/${id}`}
               className={`flex gap-1 items-center text-black rounded-md py-[6px] px-2 border  border-zinc-200
               hover:bg-blue-500 hover:text-white hover:shadow-lg transition-colors ${
@@ -66,6 +68,7 @@ export default function Sidebar({ isShow }: { isShow: any }) {
             </Link>
             {/*  */}
             <Link
+              id="knowledge"
               href={`/dashboard/${id}/files`}
               className={`flex gap-1 items-center text-black rounded-md py-[6px] px-2 border  border-zinc-200
               hover:bg-blue-500 hover:text-white hover:shadow-lg transition-colors ${
@@ -79,6 +82,7 @@ export default function Sidebar({ isShow }: { isShow: any }) {
             </Link>
             {/*  */}
             <Link
+              id="history"
               href={`/dashboard/${id}/history`}
               className={`flex gap-1 items-center text-black rounded-md py-[6px] px-2 border  border-zinc-200
               hover:bg-blue-500 hover:text-white hover:shadow-lg transition-colors ${
@@ -92,6 +96,7 @@ export default function Sidebar({ isShow }: { isShow: any }) {
             </Link>
             {/*  */}
             <Link
+              id="links"
               href={`/dashboard/${id}/links`}
               className={`flex gap-1 items-center text-black rounded-md py-[6px] px-2 border  border-zinc-200
               hover:bg-blue-500 hover:text-white hover:shadow-lg transition-colors ${
@@ -104,6 +109,7 @@ export default function Sidebar({ isShow }: { isShow: any }) {
             </Link>
             {/*  */}
             <Link
+              id="analytics"
               href={`/dashboard/${id}/analytics`}
               className={`flex gap-1 items-center text-black rounded-md py-[6px] px-2 border  border-zinc-200
               hover:bg-blue-500 hover:text-white hover:shadow-lg transition-colors ${
@@ -117,6 +123,7 @@ export default function Sidebar({ isShow }: { isShow: any }) {
             </Link>
             {/*  */}
             <Link
+              id="setting"
               href={`/dashboard/${id}/setting`}
               className={`flex gap-1 items-center text-black rounded-md py-[6px] px-2 border  border-zinc-200
               hover:bg-blue-500 hover:text-white hover:shadow-lg transition-colors ${

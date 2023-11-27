@@ -50,6 +50,7 @@ export default function Home() {
             })}
             href="/dashboard"
             target="_blank"
+            id="dashboardBtn"
           >
             Get started <ArrowRight className="ml-2 h-5 w-5" />
           </Link>

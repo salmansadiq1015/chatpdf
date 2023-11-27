@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import { Loader2 } from "lucide-react";
 import React from "react";
 
 export default function page() {
@@ -15,8 +16,17 @@ export default function page() {
             className="w-full mt-8"
             style={{ height: "1px", background: "#ccc" }}
           ></div>
+
+          <div className="w-full min-h-[50vh] mt-[2rem] flex flex-col items-center justify-center gap-4">
+            <h2 className="text-2xl text-blue-500 font-semibold">
+              Development Mode
+              <span className="animate-pulse inline-block">...</span>
+            </h2>
+            <span>
+              <Loader2 className="h-10 w-10 text-blue-600 animate-spin" />
+            </span>
+          </div>
         </div>
-        
       </div>
     </Layout>
   );

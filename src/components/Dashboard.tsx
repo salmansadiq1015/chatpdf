@@ -17,6 +17,8 @@ import Papa from "papaparse";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { AiOutlineCloseCircle, AiOutlineCloudDownload } from "react-icons/ai";
 import Image from "next/image";
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
 
 interface PageProps {
   subscriptionPlan: Awaited<ReturnType<typeof getUserSubscriptionPlan>>;
@@ -62,6 +64,7 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
   const [showMerge, setShowMerge] = useState<boolean>(false);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [mergedFile, setMergedFile] = useState<Blob | null>(null);
+  const [tourShown, setTourShown] = useState(false);
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -134,12 +137,96 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
     setShowMerge(false);
   };
 
+  // -----------Heightlights------------->
+  useEffect(() => {
+    const tourAlreadyShown = localStorage.getItem("tourShown");
+
+    if (!tourAlreadyShown) {
+      const driverObj = driver({
+        showProgress: true,
+        steps: [
+          {
+            element: "#title",
+            popover: {
+              title: "Title",
+              description: "Your uploads!",
+              side: "left",
+              align: "start",
+            },
+          },
+          {
+            element: "#mergefile",
+            popover: {
+              title: "Merge PDF Files",
+              description:
+                "Click and upload multiple file and merge it into single file!",
+              side: "left",
+              align: "start",
+            },
+          },
+          {
+            element: "#upload",
+            popover: {
+              title: "Upload File",
+              description: "Click this button and upload new files",
+              side: "bottom",
+              align: "start",
+            },
+          },
+          {
+            element: "#owner",
+            popover: {
+              title: "Owner",
+              description:
+                "Feel the power as the rightful owner of this file! Your creation, your control!",
+              side: "bottom",
+              align: "start",
+            },
+          },
+          {
+            element: "#delete",
+            popover: {
+              title: "Delete Files",
+              description:
+                "Clear the path for new beginnings and make room for fresh ideas. Deleting files has never been this empowering—seize control of your digital canvas and let your creativity flow freely!",
+              align: "start",
+            },
+          },
+          {
+            element: "#initialte_chat",
+            popover: {
+              title: "Initiate Chat",
+              description:
+                "Click 'Initiate Chat' to unlock the magic! Unleash conversation by interacting with this file. Let the dialogue begin!",
+
+              side: "left",
+              align: "start",
+            },
+          },
+          {
+            popover: {
+              title: "Happy Use",
+              description:
+                "Congratulations! You've reached the end of your tour. Now, go ahead and infuse joy into your applications. Happy exploring!",
+            },
+          },
+        ],
+      });
+
+      driverObj.drive();
+
+      setTourShown(true);
+      localStorage.setItem("tourShown", "true");
+    }
+  }, [tourShown]);
+
   return (
     <main className="mx-auto max-w-7xl md:p-10 p-2 relative  min-h-screen">
       <div
         className="absolute right-10 merge-files mt-[2rem] mb-6 sm:mt-[-2rem]"
         title="Merge Multiple files"
         onClick={() => setShowMerge(true)}
+        id="mergefile"
       >
         <HiDocumentPlus />
       </div>
@@ -215,11 +302,14 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
         <h1
           className="mb-3 font-bold text-5xl text-gray-900"
           style={{ textShadow: "-1px 1px 0px #777" }}
+          id="title"
         >
           My Fi<span className="text-blue-600">les</span>
         </h1>
 
-        <UploadButton isSubscribed={subscriptionPlan.isSubscribed} />
+        <div id="upload">
+          <UploadButton isSubscribed={subscriptionPlan.isSubscribed} />
+        </div>
       </div>
 
       {/* -------Display All User Files--------- */}
@@ -244,9 +334,13 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
                   <Link
                     href={`/dashboard/${file.id}`}
                     className="flex flex-col gap-2 "
+                    id="initialte_chat"
                   >
                     <div className=" py-0 px-2  w-[5rem] flex items-center justify-center  rounded-3xl bg-zinc-300 hover:bg-green-200 mt-3 ml-2 border border-green-500">
-                      <span className="font-medium text-sm text-zinc-600">
+                      <span
+                        className="font-medium text-sm text-zinc-600"
+                        id="owner"
+                      >
                         OWNER
                       </span>
                     </div>
@@ -310,6 +404,7 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
                       Test
                     </div>
                     <Button
+                      id="delete"
                       size="sm"
                       className=" bg-red-500 hover:bg-red-600"
                       variant="destructive"
@@ -333,7 +428,7 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
       ) : (
         <div className="mt-16 flex flex-col items-center gap-2">
           <Ghost className="h-8 w-8 text-zinc-800" />
-          <h3 className="font-semibold text-zinc-800 text-xl">
+          <h3 className="font-semibold text-zinc-800 text-xl" id="empty">
             Pretty empty around here
           </h3>
           <p>let&apos;s upload your first PDF.</p>

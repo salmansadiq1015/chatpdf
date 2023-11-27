@@ -95,7 +95,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
   ];
 
   return (
-    <div className="w-full bg-white rounded-md shadow flex flex-col items-center">
+    <div className="w-full min-h-[80vh] overflow-x-hidden bg-white rounded-md shadow flex flex-col items-center">
       <div className="h-14 w-full border-b border-zinc-200 flex items-center justify-between px-2">
         <div className="flex items-center gap-1.5">
           <Button
@@ -181,22 +181,31 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
             <RotateCw className="h-4 w-4" />
           </Button>
 
-          <div className="sm:block hidden">
+          <div className="sm:block hidden overflow-x-scroll">
             <PdfFullscreen fileUrl={url} />
           </div>
         </div>
       </div>
 
       {isTextOrCsv && (
-        <div className=" w-full">
+        <div className=" w-full overflow-x-hidden">
           <div
             className=" w-full "
-            style={{ overflowY: "scroll", maxHeight: "70vh" }}
+            style={{
+              overflowY: "scroll",
+              maxHeight: "70vh",
+              overflowX: "hidden",
+            }}
           >
-            <DocViewer
+            {/* <DocViewer
               documents={docsURL}
               pluginRenderers={DocViewerRenderers}
-            />
+              className="overflow-x-hidden"
+            /> */}
+            <iframe
+              src={`https://docs.google.com/gview?url=${docURL}&embedded=true`}
+              className="w-full min-h-screen "
+            ></iframe>
           </div>
         </div>
       )}
