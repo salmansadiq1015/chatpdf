@@ -35,3 +35,16 @@ export async function POST(req, res) {
     );
   }
 }
+
+export async function DELETE(req, res) {
+  const { id } = await req.json();
+
+  await db.comment.delete({
+    id: id,
+  });
+
+  return NextResponse.json(
+    { message: "Delete successfullly", success: true },
+    { status: 200 }
+  );
+}

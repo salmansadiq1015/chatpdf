@@ -25,7 +25,7 @@ export default async function page() {
             className="text-3xl text-blue-600 font-semibold "
             style={{ textShadow: "-1px 1px 0px #888" }}
           >
-            History
+            Explore Your Journey
           </h2>
           <p className=" text-zinc-500 w-[95%] sm:w-[80%] text-justify ">
             {" "}
@@ -35,9 +35,29 @@ export default async function page() {
           </p>
           <div className="w-full h-[1px] bg-slate-300 mt-6"></div>
         </div>
-        <div className=" py-[.5rem] p-2 rounded-md shadow-lg bg-white mt-4">
-          <UserMessages totalMessages={totalMessages} />
-        </div>
+        {totalMessages.length !== 0 ? (
+          <div className=" py-[.5rem] p-2 rounded-md shadow-lg bg-white mt-4">
+            <UserMessages totalMessages={totalMessages} />
+          </div>
+        ) : (
+          <div className="w-full min-h-[50vh] flex  items-center justify-center ">
+            <div className="flex flex-col gap-3 w-[95%] sm:w-[80%] md:w-[60%] ">
+              <p className="text-zinc-900 text-center text-lg font-medium">
+                We couldn&apos;t find any history for your account yet, but
+                don&apos;t worry! Your journey is just beginning.
+              </p>
+              <p className="text-zinc-600 text-center ">
+                Start exploring and interacting with our platform to create your
+                unique history. Whether it&apos;s discovering new content,
+                making connections, or achieving milestones, every moment
+                contributes to your story.
+              </p>
+              <p className="text-zinc-600 text-center ">
+                Enjoy the adventure ahead, and make your mark on our community!
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </Layout>
   );

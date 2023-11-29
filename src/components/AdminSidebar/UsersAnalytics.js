@@ -40,7 +40,7 @@ export default function UsersAnalytics({ userLength, totalUsers }) {
   useEffect(() => {
     // Extracting and formatting createdAt values from users
     const dateOptions = { day: "numeric", month: "short" };
-    const createdAtValues = totalUsers.map((user) =>
+    const createdAtValues = totalUsers?.map((user) =>
       new Date(user.createdAt).toLocaleString("default", dateOptions)
     );
 

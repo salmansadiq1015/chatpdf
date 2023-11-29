@@ -8,8 +8,22 @@ import { BsDatabaseFill } from "react-icons/bs";
 import Link from "next/link";
 import Pricing from "./pricing/page";
 import Image from "next/image";
+import { db } from "@/db";
+import UserComment from "../components/UserComment";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
-export default function Home() {
+export default async function Home() {
+  const { getUser } = getKindeServerSession();
+  const user = getUser();
+
+  const comment = await db.comment.findMany({});
+
+  const dbUser = await db.user.findFirst({
+    where: {
+      id: user.id ?? undefined,
+    },
+  });
+
   return (
     <MaxWidthWrapper
       className="relative mb-12 mt-20 sm:mt-30 flex flex-col items-center justify-center  overflow-hidden
@@ -415,6 +429,10 @@ export default function Home() {
             </p>
           </div>
         </div>
+      </section>
+      {/* -----------Comment Section--------- */}
+      <section className="mt-[2rem] w-full py-8 px-2 rounded-md  ">
+        <UserComment comment={comment} role={dbUser?.role} />
       </section>
       {/* -----------------Billings------------ */}
       <section className="mt-[1rem]">
