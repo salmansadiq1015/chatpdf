@@ -19,15 +19,15 @@ export default function Page() {
       const allText = [] as any;
 
       $("body")
-        .find("*")
-        .each((index, element) => {
-          const text = $(element).text().trim();
+        ?.find("*")
+        ?.each((index, element) => {
+          const text = $(element)?.text()?.trim();
           if (text.length > 0) {
-            allText.push(text);
+            allText?.push(text);
           }
         });
 
-      const scrapedData = allText.join("\n");
+      const scrapedData = allText?.join("\n");
       setData(scrapedData);
       setUrl("");
       setLoading(false);
