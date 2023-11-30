@@ -23,16 +23,20 @@ export default function Page() {
         ?.each((index, element) => {
           const text = $(element)?.text()?.trim();
           if (text.length > 0) {
-            allText?.push(text);
+            allText.push(text);
           }
         });
 
-      const scrapedData = allText?.join("\n");
+      const scrapedData = allText.join("\n");
       setData(scrapedData);
       setUrl("");
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error("Error during scraping:", error);
+      // Handle the error, e.g., display a user-friendly message
+      setData("");
+      setUrl("");
+      setLoading(false);
     }
   };
 
