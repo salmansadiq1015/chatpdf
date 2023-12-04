@@ -20,7 +20,7 @@ export default async function Home() {
 
   const dbUser = await db.user.findFirst({
     where: {
-      id: user.id ?? undefined,
+      id: user?.id ?? undefined,
     },
   });
 
@@ -298,7 +298,7 @@ export default async function Home() {
                 <BiSolidBot />
               </div>
               <h3 className="text-2xl text-black font-bold">
-                GPT-3.5 & GPT-4 Support
+                GPT-3.5-turbo & GPT-4 Support
               </h3>
               <p className="text-base text-zinc-500 text-justify ">
                 Choose which language model is best for you and your needs and

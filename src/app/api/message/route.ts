@@ -1,4 +1,3 @@
-import { LayoutProps } from "./../../../../.next/types/app/page";
 import { db } from "@/db";
 import { openai } from "@/lib/openai";
 import { getPineconeClient } from "@/lib/pinecone";
