@@ -7,7 +7,7 @@ import Link from "next/link";
 import { format } from "date-fns";
 import React, { useState } from "react";
 
-import UploadButton from "@/components/UploadButton";
+// import UploadButton from "@/components/UploadButton";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout/Layout";
 import Image from "next/image";
@@ -155,14 +155,13 @@ const Dashboard = () => {
                         <Calendar className="h-4 w-4 text-purple-600" />
                         {format(new Date(file.createdAt), "dd MMM yyyy")}
                       </div>
-                      {/* <div className="flex items-center">
-                        <MessageSquare className="h-4 w-4" />
-                      </div> */}
+
                       <Button
                         size="sm"
                         className=" bg-red-500 hover:bg-red-600"
                         variant="destructive"
                         onClick={() => deleteFile({ id: file.id })}
+                        disabled
                       >
                         {currentlyDeletingFile === file.id ? (
                           <Loader2 className="w-4 h-4 animate-spin text-white" />

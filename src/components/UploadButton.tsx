@@ -10,6 +10,7 @@ import { useUploadThing } from "@/lib/uploadthing";
 import { trpc } from "@/app/_trpc/client";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+// import { uploadToS3 } from "@/lib/s3";
 
 const UploadDropzone = ({
   isSubscribed,
@@ -83,6 +84,14 @@ const UploadDropzone = ({
 
         const promises = validFiles.map(async (file) => {
           const res = await startUpload([file]);
+
+          // // Upload to S3
+          // try {
+          //   const data = await uploadToS3(file);
+          //   console.log("Data:", data);
+          // } catch (error) {
+          //   console.log(error);
+          // }
 
           if (!res) {
             return toast.error(
@@ -194,8 +203,17 @@ const UploadDropzone = ({
 
 // ... (UploadButton and export statement remain the same)
 
-const UploadButton = ({ isSubscribed }: { isSubscribed: boolean }) => {
+const UploadButton = ({
+  isSubscribed,
+  quota,
+  uploadedFiles,
+}: {
+  isSubscribed: boolean;
+  quota: Number | undefined;
+  uploadedFiles: Number;
+}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  console.log(uploadedFiles, quota);
 
   return (
     <Dialog
@@ -207,7 +225,11 @@ const UploadButton = ({ isSubscribed }: { isSubscribed: boolean }) => {
       }}
     >
       <DialogTrigger onClick={() => setIsOpen(true)} asChild>
-        <Button>+ Upload File</Button>
+        {!isSubscribed && uploadedFiles === 3 ? (
+          <Button disabled>+ Upload File</Button>
+        ) : (
+          <Button>+ Upload File</Button>
+        )}
       </DialogTrigger>
 
       <DialogContent>

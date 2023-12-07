@@ -31,7 +31,10 @@ const Page = async () => {
 
   return (
     <>
-      <Dashboard subscriptionPlan={subscriptionPlan} />
+      <Dashboard
+        subscriptionPlan={subscriptionPlan}
+        uploadedFiles={uploadedFiles.length}
+      />
       <div className="w-full px-[1rem] sm:px-[3rem] min-h-screen ">
         <h2
           className="text-3xl text-black font-semibold "

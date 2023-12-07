@@ -12,12 +12,14 @@ import { getUserSubscriptionPlan } from "@/lib/stripe";
 import Image from "next/image";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
+import { toast } from "react-toastify";
 
 interface PageProps {
   subscriptionPlan: Awaited<ReturnType<typeof getUserSubscriptionPlan>>;
+  uploadedFiles: Number;
 }
 
-const Dashboard = ({ subscriptionPlan }: PageProps) => {
+const Dashboard = ({ subscriptionPlan, uploadedFiles }: PageProps) => {
   const [currentlyDeletingFile, setCurrentlyDeletingFile] = useState<
     string | null
   >(null);
@@ -27,18 +29,16 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
   const { data: files, isLoading } = trpc.getUserFiles.useQuery();
 
   // ------------------->
-  const fileExtensions = files?.map((file) => {
-    const url = file.url;
-    const parts = url.split(".");
-    if (parts.length > 1) {
-      return `.${parts[parts.length - 1]}`;
-    } else {
-      // Handle the case where there is no file extension
-      return "Unknown";
-    }
-  });
-
-  // console.log(fileExtensions);
+  // const fileExtensions = files?.map((file) => {
+  //   const url = file.url;
+  //   const parts = url.split(".");
+  //   if (parts.length > 1) {
+  //     return `.${parts[parts.length - 1]}`;
+  //   } else {
+  //     // Handle the case where there is no file extension
+  //     return "Unknown";
+  //   }
+  // });
 
   // ------------------->
   const { mutate: deleteFile } = trpc.deleteFile.useMutation({
@@ -52,6 +52,8 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
       setCurrentlyDeletingFile(null);
     },
   });
+
+  console.log(subscriptionPlan.isSubscribed);
 
   // ------------------Merge Files------------>
   const [tourShown, setTourShown] = useState(false);
@@ -154,7 +156,11 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
         </h1>
 
         <div id="upload">
-          <UploadButton isSubscribed={subscriptionPlan.isSubscribed} />
+          <UploadButton
+            isSubscribed={subscriptionPlan.isSubscribed}
+            quota={subscriptionPlan.quota}
+            uploadedFiles={uploadedFiles}
+          />
         </div>
       </div>
 
@@ -249,19 +255,40 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
                       <MessageSquare className="h-4 w-4" />
                       Test
                     </div>
-                    <Button
-                      id="delete"
-                      size="sm"
-                      className=" bg-red-500 hover:bg-red-600"
-                      variant="destructive"
-                      onClick={() => deleteFile({ id: file.id })}
-                    >
-                      {currentlyDeletingFile === file.id ? (
-                        <Loader2 className="w-4 h-4 animate-spin text-white" />
-                      ) : (
-                        <Trash className="w-4 h-4 text-white" />
-                      )}
-                    </Button>
+                    {subscriptionPlan.isSubscribed === true ? (
+                      <Button
+                        id="delete"
+                        size="sm"
+                        className=" bg-red-500 hover:bg-red-600"
+                        variant="destructive"
+                        onClick={() => deleteFile({ id: file.id })}
+                      >
+                        {currentlyDeletingFile === file.id ? (
+                          <Loader2 className="w-4 h-4 animate-spin text-white" />
+                        ) : (
+                          <Trash className="w-4 h-4 text-white" />
+                        )}
+                      </Button>
+                    ) : (
+                      <Button
+                        id="delete"
+                        size="sm"
+                        className=" bg-red-500 hover:bg-red-600"
+                        variant="destructive"
+                        onClick={() =>
+                          toast.error(
+                            "Free user cannot delete knowledge source",
+                            { position: "top-center" }
+                          )
+                        }
+                      >
+                        {currentlyDeletingFile === file.id ? (
+                          <Loader2 className="w-4 h-4 animate-spin text-white" />
+                        ) : (
+                          <Trash className="w-4 h-4 text-white" />
+                        )}
+                      </Button>
+                    )}
                   </div>
                 </li>
               ))}
