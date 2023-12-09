@@ -81,6 +81,7 @@ const onUploadComplete = async ({
     const pageLevelDocs = await loader.load();
 
     const pagesAmt = pageLevelDocs.length;
+    console.log(pagesAmt);
 
     const { subscriptionPlan } = metadata;
     const { isSubscribed } = subscriptionPlan;
@@ -114,7 +115,7 @@ const onUploadComplete = async ({
 
     // vectorize and index the entire document
     const pinecone = await getPineconeClient();
-    const pineconeIndex = pinecone.Index("chatpdf");
+    const pineconeIndex = pinecone.Index("test");
 
     const embeddings = new OpenAIEmbeddings({
       openAIApiKey: process.env.OPENAI_API_KEY,
