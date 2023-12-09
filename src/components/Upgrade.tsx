@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsFillLightningChargeFill } from "react-icons/bs";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { Button } from "./ui/button";
@@ -21,6 +21,7 @@ export default function Upgrade({
         <div
           className="p-3 rounded-full text-white shadow-lg hover:shadow-2xl border border-zinc-300 bg-green-500 "
           onClick={() => setIsShow(true)}
+          // style={{display:}}
         >
           <BsFillLightningChargeFill />
         </div>

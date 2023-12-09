@@ -249,32 +249,42 @@ export type OurFileRouter = typeof ourFileRouter;
 //     }
 
 //     const pageLevelDocs = await loader.load();
-//     console.log(pageLevelDocs);
 
 //     const pagesAmt = pageLevelDocs.length;
 
 //     const { subscriptionPlan } = metadata;
 //     const { isSubscribed } = subscriptionPlan;
 
-// const isProExceeded =
-//   pagesAmt > PLANS.find((plan) => plan.name === "Pro")!.pagesPerPdf;
-// const isFreeExceeded =
-//   pagesAmt > PLANS.find((plan) => plan.name === "Free")!.pagesPerPdf;
+//     const isProExceeded =
+//       pagesAmt > PLANS.find((plan) => plan.name === "Pro")!.pagesPerPdf;
+//     const isFreeExceeded =
+//       pagesAmt > PLANS.find((plan) => plan.name === "Free")!.pagesPerPdf;
 
-// if ((isSubscribed && isProExceeded) || (!isSubscribed && isFreeExceeded)) {
-//   await db.file.update({
-//     data: {
-//       uploadStatus: "FAILED",
-//     },
-//     where: {
-//       id: createdFile.id,
-//     },
-//   });
-// }
+//     if (isSubscribed) {
+//       await db.file.update({
+//         data: {
+//           uploadStatus: "SUCCESS",
+//         },
+//         where: {
+//           id: createdFile.id,
+//         },
+//       });
+//     } else if (!isSubscribed && isFreeExceeded) {
+//       await db.file.update({
+//         data: {
+//           uploadStatus: "FAILED",
+//         },
+//         where: {
+//           id: createdFile.id,
+//         },
+//       });
+//     }
+
+//     // || (!isSubscribed && isFreeExceeded)
 
 //     // vectorize and index the entire document
 //     const pinecone = await getPineconeClient();
-//     const pineconeIndex = pinecone.Index("test");
+//     const pineconeIndex = pinecone.Index("chatpdf");
 
 //     const embeddings = new OpenAIEmbeddings({
 //       openAIApiKey: process.env.OPENAI_API_KEY,
@@ -282,9 +292,9 @@ export type OurFileRouter = typeof ourFileRouter;
 
 //     await PineconeStore.fromDocuments(pageLevelDocs, embeddings, {
 //       pineconeIndex,
-//       namespace: user.id,
+//       namespace: createdFile.id,
 //     });
-//     // namespace: createdFile.id,
+//     // namespace: user.id,
 
 //     await db.file.update({
 //       data: {
