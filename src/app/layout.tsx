@@ -62,7 +62,7 @@ export default async function RootLayout({
             </div>
             <div className="fixed bottom-1 left-1 z-50 hidden md:block">
               <Upgrade
-                file={uploadedFiles.length}
+                file={user?.id ? uploadedFiles.length : 0}
                 subscription={subscriptionPlan.isSubscribed}
               />
             </div>
