@@ -81,7 +81,3 @@ model Comment {
   User   User?   @relation(fields: [userId], references: [id])
   userId String?
 }
-
-model multidoc {
-
-}
