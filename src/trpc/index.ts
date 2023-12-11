@@ -131,6 +131,8 @@ export const appRouter = router({
           isUserMessage: true,
           createdAt: true,
           text: true,
+          pageNumber: true,
+          title: true,
         },
       });
 

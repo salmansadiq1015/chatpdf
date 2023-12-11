@@ -56,6 +56,14 @@ export const POST = async (req: NextRequest) => {
   // namespace: file.id,
 
   const results = await vectorStore.similaritySearch(message, 4);
+  const pageNumber =
+    results[0].metadata["loc.pageNumber"] ||
+    (results[0].metadata["line"] as number);
+  const title =
+    results[0].metadata["pdf.info.Title"] ||
+    (results[0].metadata["blobType"] as string);
+  console.log(results);
+  console.log(title, pageNumber);
 
   const prevMessages = await db.message.findMany({
     where: {
@@ -112,6 +120,8 @@ export const POST = async (req: NextRequest) => {
           isUserMessage: false,
           fileId,
           userId,
+          pageNumber: pageNumber,
+          title: title,
         },
       });
     },

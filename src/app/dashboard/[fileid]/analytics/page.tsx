@@ -73,7 +73,7 @@ export default async function Analytics() {
               Messages Analytics
             </h1>
             <div
-              className="w-full h-[13rem] mt-3 flex  items-center justify-center"
+              className="w-full h-[19rem] mt-3 flex  items-center justify-center"
               style={{
                 filter: "drop-shadow(0.3rem 0.3rem 0.2rem rgba(0, 0, 0, 0.5))",
               }}
@@ -94,7 +94,7 @@ export default async function Analytics() {
               Files Analytics
             </h1>
             <div
-              className="w-full h-[13rem] mt-3 flex  items-center justify-center"
+              className="w-full h-[19rem] mt-3 flex  items-center justify-center"
               style={{
                 filter: "drop-shadow(0.3rem 0.3rem 0.2rem rgba(0, 0, 0, 0.5))",
               }}

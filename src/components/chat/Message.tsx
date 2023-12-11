@@ -3,7 +3,10 @@ import { ExtendedMessage } from "@/types/message";
 import { Icons } from "../Icons";
 import ReactMarkdown from "react-markdown";
 import { format } from "date-fns";
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
+import { FaCopy } from "react-icons/fa";
+import { toast } from "react-toastify";
+import { FaShareAlt } from "react-icons/fa";
 
 interface MessageProps {
   message: ExtendedMessage;
@@ -12,6 +15,40 @@ interface MessageProps {
 
 const Message = forwardRef<HTMLDivElement, MessageProps>(
   ({ message, isNextMessageSamePerson }, ref) => {
+    const [isCopied, setIsCopied] = useState(false);
+
+    const handleCopyText = () => {
+      const textToCopy = typeof message.text === "string" ? message.text : "";
+      navigator.clipboard.writeText(textToCopy);
+      setIsCopied(true);
+      setTimeout(() => {
+        setIsCopied(false);
+        toast.success("Copied the clipboard", {
+          position: "top-center",
+          theme: "dark",
+        });
+      }, 2000);
+    };
+
+    // Share System
+
+    const handleShareMessage = () => {
+      const textToShare = typeof message.text === "string" ? message.text : "";
+      if (navigator.share) {
+        navigator
+          .share({
+            title: "Share Message",
+            text: textToShare,
+          })
+          .then(() => console.log("Shared successfully"))
+          .catch((error) => console.error("Error sharing:", error));
+      } else {
+        // Fallback for browsers that do not support Web Share API
+        // You can implement your own sharing mechanism here
+        console.log("Web Share API not supported");
+      }
+    };
+
     return (
       <div
         ref={ref}
@@ -54,24 +91,85 @@ const Message = forwardRef<HTMLDivElement, MessageProps>(
             })}
           >
             {typeof message.text === "string" ? (
-              <ReactMarkdown
-                className={cn("prose", {
-                  "text-zinc-50": message.isUserMessage,
-                })}
-              >
-                {message.text}
-              </ReactMarkdown>
+              <div className="flex items-center flex-col">
+                <ReactMarkdown
+                  className={cn("prose", {
+                    "text-zinc-50": message.isUserMessage,
+                  })}
+                >
+                  {message.text}
+                </ReactMarkdown>
+                {message.text && (
+                  <div
+                    className={cn("flex items-center justify-end w-full", {
+                      hidden: message.isUserMessage,
+                    })}
+                  >
+                    <div
+                      onClick={handleCopyText}
+                      className={cn(
+                        "ml-2 bg-blue-500 text-white px-2 py-1 rounded focus:outline-none w-[2rem] cursor-pointer ",
+                        {
+                          "opacity-70 cursor-not-allowed": isCopied,
+                        }
+                      )}
+                    >
+                      <FaCopy />
+                    </div>
+                    <div
+                      onClick={handleShareMessage}
+                      className={cn(
+                        "ml-2 bg-green-500 text-white px-2 py-1 rounded focus:outline-none w-[2rem] cursor-pointer ",
+                        {
+                          "opacity-70 cursor-not-allowed": isCopied,
+                        }
+                      )}
+                    >
+                      {/* <Icons.share className="h-4 w-4" /> */}
+                      <FaShareAlt />
+                    </div>
+                  </div>
+                )}
+              </div>
             ) : (
               message.text
             )}
             {message.id !== "loading-message" ? (
               <div
-                className={cn("text-xs select-none mt-2 w-full text-right", {
-                  "text-zinc-500": !message.isUserMessage,
-                  "text-blue-300": message.isUserMessage,
-                })}
+                className={cn(
+                  "text-xs select-none mt-2 w-full text-right flex flex-col gap-1",
+                  {
+                    "text-zinc-500": !message.isUserMessage,
+                    "text-blue-300": message.isUserMessage,
+                  }
+                )}
               >
-                {format(new Date(message.createdAt), "HH:mm")}
+                {message.isUserMessage && (
+                  <>{format(new Date(message.createdAt), "HH:mm")}</>
+                )}
+                {!message.isUserMessage && (
+                  <>
+                    <div className="w-full flex items-center justify-between py-[.2rem] px-2 rounded-2xl">
+                      <span
+                        className="text-blue-500 py-1 rounded-3xl px-2 "
+                        style={{
+                          background: "rgba(0,0,0,0.1)",
+                        }}
+                      >
+                        {message.title?.slice(0, 35)}
+                      </span>
+                      <span
+                        className="text-blue-500 py-1 flex items-center justify-center  rounded-sm shadow-md"
+                        style={{
+                          background: "rgba(0,0,0,0.1)",
+                          width: "1.5rem",
+                        }}
+                      >
+                        {message.pageNumber}
+                      </span>
+                    </div>
+                  </>
+                )}
               </div>
             ) : null}
           </div>

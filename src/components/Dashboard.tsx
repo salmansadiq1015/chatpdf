@@ -304,7 +304,7 @@ const Dashboard = ({ subscriptionPlan, uploadedFiles }: PageProps) => {
           <h3 className="font-semibold text-zinc-800 text-xl" id="empty">
             Pretty empty around here
           </h3>
-          <p>let&apos;s upload your first PDF.</p>
+          <p>let&apos;s upload your first File.</p>
         </div>
       )}
     </main>

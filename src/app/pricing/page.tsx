@@ -21,7 +21,7 @@ const Pricing = () => {
     {
       plan: "Free",
       tagline: "For small side projects.",
-      quota: 20,
+      quota: 3,
       features: [
         {
           text: "10 pages per PDF",
@@ -40,6 +40,17 @@ const Pricing = () => {
           negative: true,
         },
         {
+          text: "Unlimited uploads",
+          footnote: "Upload unlimited PDF, CSV, TXT files",
+          negative: true,
+        },
+        {
+          text: "Chat with Multiple files",
+          footnote:
+            "You can also integrate chat with multiple files at a time.",
+          negative: true,
+        },
+        {
           text: "Priority support",
           negative: true,
         },
@@ -51,7 +62,7 @@ const Pricing = () => {
       quota: PLANS.find((p) => p.slug === "pro")!.quota,
       features: [
         {
-          text: "100 pages per PDF, CSV, TEXT",
+          text: "500 pages per PDF, CSV, TEXT",
           footnote: "The maximum amount of pages per PDF, CSV & TEXT file.",
         },
         {
@@ -64,6 +75,15 @@ const Pricing = () => {
         {
           text: "Higher-quality responses",
           footnote: "Better algorithmic responses for enhanced content quality",
+        },
+        {
+          text: "Unlimited uploads",
+          footnote: "Upload unlimited PDF, CSV, TXT files",
+        },
+        {
+          text: "Chat with Multiple files",
+          footnote:
+            "You can also integrate chat with multiple files at a time.",
         },
         {
           text: "Priority support",

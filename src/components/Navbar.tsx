@@ -28,7 +28,7 @@ const Navbar = async () => {
   return (
     <nav className="sticky h-16 inset-x-0 top-0 z-50 w-full border-b border-gray-200 bg-black backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
-        <div className="flex h-16 items-center justify-between border-b border-zinc-200">
+        <div className="flex h-16 items-center justify-between border-b border-zinc-200 px-2.5 md:px-20">
           <Link href="/" className="flex z-40 font-bold text-white text-2xl">
             Chat<span className="text-blue-700">Doc</span>.ai
           </Link>

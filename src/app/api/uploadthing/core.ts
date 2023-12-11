@@ -112,6 +112,7 @@ const onUploadComplete = async ({
     }
 
     // || (!isSubscribed && isFreeExceeded)
+    // const multiple = 1;
 
     // vectorize and index the entire document
     const pinecone = await getPineconeClient();

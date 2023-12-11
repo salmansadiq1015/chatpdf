@@ -37,6 +37,8 @@ const Messages = ({ fileId }: MessagesProps) => {
         <Loader2 className="h-4 w-4 animate-spin" />
       </span>
     ),
+    pageNumber: null,
+    title: "",
   };
 
   const combinedMessages = [

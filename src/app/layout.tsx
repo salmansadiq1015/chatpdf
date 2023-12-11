@@ -60,7 +60,7 @@ export default async function RootLayout({
             <div className="fixed bottom-3 right-3 z-50">
               <Comment userId={user?.id} userEmail={user?.email} />
             </div>
-            <div className="fixed bottom-1 left-1 z-50 hidden md:block">
+            <div className="fixed bottom-1 left-1 z-50">
               <Upgrade
                 file={user?.id ? uploadedFiles.length : 0}
                 subscription={subscriptionPlan.isSubscribed}
@@ -68,7 +68,6 @@ export default async function RootLayout({
             </div>
           </div>
 
-          <Footer />
           {/* <!-- Animation --> */}
           <ToastContainer />
         </body>
