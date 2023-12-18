@@ -1,0 +1,304 @@
+.anim1 {
+  position: absolute;
+  top: 1rem;
+  right: 3rem;
+  width: 700px;
+  height: 700px;
+  background: transparent;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.anim1::before {
+  content: "";
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: rgb(40, 165, 255);
+  border-radius: 50%;
+  animation: star1 3s linear infinite;
+  box-shadow: 0.3rem 0.3rem 3rem 0.3rem rgb(4, 255, 251);
+}
+.anim1 > .star {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  box-shadow: 0.3rem 0.3rem 3rem 0.3rem rgb(213, 255, 2);
+  animation: star1 5s linear infinite;
+  background: gold;
+}
+@keyframes star1 {
+  0% {
+    transform: rotate(0deg) translate(350px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translate(350px) rotate(360deg);
+  }
+}
+
+.anim2 {
+  position: absolute;
+  top: 7.4rem;
+  right: 9rem;
+  width: 500px;
+  height: 500px;
+  background: transparent;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.anim2::before {
+  content: "";
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: rgb(40, 255, 58);
+  border-radius: 50%;
+  animation: star2 6s linear infinite;
+  box-shadow: 0.3rem 0.3rem 2.3rem 0.3rem rgb(4, 255, 79);
+}
+.anim2 > .sta2 {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  box-shadow: 0.3rem 0.3rem 3rem 0.3rem rgb(255, 2, 133);
+  background: rgb(255, 0, 81);
+  animation: star2 4s linear infinite;
+}
+@keyframes star2 {
+  0% {
+    transform: rotate(0deg) translate(250px) rotate(0deg);
+  }
+  50% {
+    box-shadow: 0.3rem 0.3rem 3rem 0.3rem rgb(145, 2, 255);
+    background: rgb(166, 0, 255);
+  }
+  100% {
+    transform: rotate(-360deg) translate(250px) rotate(-360deg);
+  }
+}
+
+.anim3 {
+  position: absolute;
+  bottom: -15rem;
+  left: -4rem;
+  width: 300px;
+  height: 300px;
+  background: transparent;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.anim3::before {
+  content: "";
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: rgb(40, 255, 58);
+  border-radius: 50%;
+  animation: star3 7s linear infinite;
+  box-shadow: 0.3rem 0.3rem 2.3rem 0.3rem rgb(4, 255, 79);
+}
+.anim3 > .sta3 {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  box-shadow: 0.3rem 0.3rem 3rem 0.3rem rgb(255, 2, 133);
+  background: rgb(255, 0, 81);
+  animation: star3 5s linear infinite;
+}
+@keyframes star3 {
+  0% {
+    transform: rotate(0deg) translate(150px) rotate(0deg);
+  }
+  50% {
+    box-shadow: 0.3rem 0.3rem 3rem 0.3rem rgb(145, 2, 255);
+    background: rgb(166, 0, 255);
+  }
+  100% {
+    transform: rotate(-360deg) translate(150px) rotate(-360deg);
+  }
+}
+
+/* ------------Page1------ */
+.home-page1 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  grid-gap: 2rem;
+}
+
+/* ----------Page2------- */
+.chat-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  grid-gap: 2rem;
+}
+.step-image,
+.step-image2,
+.step-image3 {
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+  background: transparent;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.step-image::before {
+  content: "";
+  position: absolute;
+  width: 0.3rem;
+  height: 0.3rem;
+  background: rgb(255, 40, 223);
+  border-radius: 50%;
+  animation: step1 3s linear infinite;
+  box-shadow: 2rem 2rem 5rem 1rem rgb(230, 4, 255);
+}
+
+.step-image2::before {
+  content: "";
+  position: absolute;
+  width: 0.3rem;
+  height: 0.3rem;
+  background: rgb(40, 255, 44);
+  border-radius: 50%;
+  animation: step2 3s linear infinite;
+  box-shadow: 2rem 2rem 5rem 1rem rgb(4, 255, 4);
+}
+.step-image3::before {
+  content: "";
+  position: absolute;
+  width: 0.3rem;
+  height: 0.3rem;
+  background: rgb(255, 115, 0);
+  border-radius: 50%;
+  animation: step1 3s linear infinite;
+  box-shadow: 2rem 2rem 5rem 1rem rgb(255, 146, 4);
+}
+
+@keyframes step1 {
+  0% {
+    transform: rotate(0deg) translate(159px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translate(159px) rotate(360deg);
+  }
+}
+
+@keyframes step2 {
+  0% {
+    transform: rotate(0deg) translate(159px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg) translate(159px) rotate(-360deg);
+  }
+}
+.homebtn {
+  position: relative;
+  z-index: 30;
+}
+.homebtn::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: #000;
+  color: #fff;
+  z-index: 29;
+  transition: 1s;
+}
+.homebtn:hover::before {
+  width: 100%;
+}
+
+/* ----------Section5------- */
+.section5-icon,
+.section5-icon2,
+.section5-icon3 {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  background: transparent;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section5-icon::before {
+  content: "";
+  position: absolute;
+  width: 0.3rem;
+  height: 0.3rem;
+  background: rgb(255, 0, 234);
+  border-radius: 50%;
+  animation: cond1 3s linear infinite;
+  box-shadow: 1rem 1rem 4rem 1rem rgb(255, 4, 255);
+}
+.section5-icon3::before {
+  content: "";
+  position: absolute;
+  width: 0.3rem;
+  height: 0.3rem;
+  background: rgb(0, 166, 255);
+  border-radius: 50%;
+  animation: cond1 3s linear infinite;
+  box-shadow: 1rem 1rem 4rem 1rem rgb(4, 209, 255);
+}
+
+@keyframes cond1 {
+  0% {
+    transform: rotate(0deg) translate(39px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translate(39px) rotate(360deg);
+  }
+}
+
+.section5-icon2::before {
+  content: "";
+  position: absolute;
+  width: 0.3rem;
+  height: 0.3rem;
+  background: rgb(255, 102, 0);
+  border-radius: 50%;
+  animation: cond2 3s linear infinite;
+  box-shadow: 1rem 1rem 4rem 1rem rgb(255, 159, 4);
+}
+
+@keyframes cond2 {
+  0% {
+    transform: rotate(0deg) translate(39px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg) translate(39px) rotate(-360deg);
+  }
+}
+.section5-icon > svg {
+  color: rgb(255, 0, 166);
+  font-size: 5rem;
+  padding: 1rem;
+}
+.section5-icon2 > svg {
+  color: rgb(255, 98, 0);
+  font-size: 5rem;
+  padding: 1rem;
+}
+.section5-icon3 > svg {
+  color: rgb(0, 140, 255);
+  font-size: 5rem;
+  padding: 1rem;
+}
