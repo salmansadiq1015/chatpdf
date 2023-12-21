@@ -1,3 +1,4 @@
+// /api/message
 import { db } from "@/db";
 import { openai } from "@/lib/openai";
 import { getPineconeClient } from "@/lib/pinecone";

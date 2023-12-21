@@ -19,11 +19,10 @@ export default function Upgrade({
     <>
       {!isShow && (
         <div
-          className="p-3 rounded-full text-white shadow-lg hover:shadow-2xl border border-zinc-300 bg-green-500 "
+          className="p-3 rounded-full w-[2.5rem] h-[2.5rem] flex items-center justify-center text-white shadow-lg hover:shadow-2xl border border-zinc-300 bg-green-500 "
           onClick={() => setIsShow(true)}
-          // style={{display:}}
         >
-          <BsFillLightningChargeFill />
+          <BsFillLightningChargeFill size="22" />
         </div>
       )}
       {isShow && (

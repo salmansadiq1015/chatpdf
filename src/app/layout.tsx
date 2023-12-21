@@ -31,20 +31,17 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  let uploadedFiles: any[] = [];
-  const { getUser } = getKindeServerSession();
+  // let uploadedFiles: any[] = [];
+  // const { getUser } = getKindeServerSession();
+  // const user = getUser();
 
-  const user = getUser();
-
-  if (user) {
-    uploadedFiles = await db.file.findMany({
-      where: {
-        userId: user?.id,
-      },
-    });
-  }
-
-  const subscriptionPlan = await getUserSubscriptionPlan();
+  // if (user) {
+  //   uploadedFiles = await db.file.findMany({
+  //     where: {
+  //       userId: user?.id,
+  //     },
+  //   });
+  // }
 
   return (
     <html lang="en" className="light">
@@ -56,16 +53,12 @@ export default async function RootLayout({
           )}
         >
           <Toaster />
-          <Navbar />
+          {/* <Navbar /> */}
+          {/* <Navbar /> */}
           <div className="relative">
             {children}
 
-            <div className="fixed bottom-1 left-1 z-50">
-              <Upgrade
-                file={user?.id ? uploadedFiles.length : 0}
-                subscription={subscriptionPlan.isSubscribed}
-              />
-            </div>
+            <div className="fixed bottom-1 left-1 z-50"></div>
           </div>
 
           {/* <!-- Animation --> */}

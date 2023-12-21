@@ -17,6 +17,7 @@ const Message = forwardRef<HTMLDivElement, MessageProps>(
   ({ message, isNextMessageSamePerson }, ref) => {
     const [isCopied, setIsCopied] = useState(false);
 
+    // Handle Copy Messages
     const handleCopyText = () => {
       const textToCopy = typeof message.text === "string" ? message.text : "";
       navigator.clipboard.writeText(textToCopy);
@@ -30,7 +31,7 @@ const Message = forwardRef<HTMLDivElement, MessageProps>(
       }, 2000);
     };
 
-    // Share System
+    // Handle Share System
 
     const handleShareMessage = () => {
       const textToShare = typeof message.text === "string" ? message.text : "";

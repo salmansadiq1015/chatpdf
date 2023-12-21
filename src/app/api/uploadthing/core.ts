@@ -83,6 +83,8 @@ const onUploadComplete = async ({
 
     const pagesAmt = pageLevelDocs.length;
 
+    console.log(pagesAmt);
+
     const { subscriptionPlan } = metadata;
     const { isSubscribed } = subscriptionPlan;
 

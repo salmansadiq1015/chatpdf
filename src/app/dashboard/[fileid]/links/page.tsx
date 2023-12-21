@@ -11,23 +11,54 @@ export default function Page() {
   const [data, setData] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // const handleScrape = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const response = await axios.get(url);
+  //     const $ = cheerio.load(response.data);
+  //     const allText = [] as any;
+
+  //     $("body")
+  //       ?.find("*")
+  //       ?.each((index, element) => {
+  //         const text = $(element)?.text()?.trim();
+  //         if (text.length > 0) {
+  //           allText.push(text);
+  //         }
+  //       });
+
+  //     const scrapedData = allText.join("\n");
+  //     setData(scrapedData);
+  //     setUrl("");
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.error("Error during scraping:", error);
+  //     // Handle the error, e.g., display a user-friendly message
+  //     setData("");
+  //     setUrl("");
+  //     setLoading(false);
+  //   }
+  // };
+
   const handleScrape = async () => {
     try {
       setLoading(true);
       const response = await axios.get(url);
       const $ = cheerio.load(response.data);
-      const allText = [] as any;
 
+      const uniqueLines = new Set<string>();
+
+      // Exclude elements with style attributes and script/link tags :not(link)
       $("body")
-        ?.find("*")
+        ?.find(":not([style]):not(script)")
         ?.each((index, element) => {
           const text = $(element)?.text()?.trim();
           if (text.length > 0) {
-            allText.push(text);
+            uniqueLines.add(text);
           }
         });
 
-      const scrapedData = allText.join("\n");
+      const scrapedData = Array.from(uniqueLines).join("\n");
       setData(scrapedData);
       setUrl("");
       setLoading(false);
@@ -37,6 +68,27 @@ export default function Page() {
       setData("");
       setUrl("");
       setLoading(false);
+    }
+  };
+
+  // Handle Download
+
+  const handleDownload = () => {
+    const blob = new Blob([data], { type: "text/plain " });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "data.txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleEnterKeyPress = (e: any) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleScrape();
     }
   };
 
@@ -65,6 +117,7 @@ export default function Page() {
                 placeholder="Enter the website link"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
+                onKeyPress={handleEnterKeyPress}
                 className="w-full  rounded-md shadow-md px-2  py-1"
                 style={{ height: "3rem" }}
               />
@@ -78,6 +131,9 @@ export default function Page() {
                 <h2 className="text-2xl font-semibold text-zinc-800">
                   Scraped Website Data
                 </h2>
+                <div className="">
+                  {data && <Button onClick={handleDownload}>Download</Button>}
+                </div>
                 <p>{data}</p>
               </div>
             )}

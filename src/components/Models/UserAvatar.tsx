@@ -8,12 +8,8 @@ export default function UserAvatar() {
 
   return (
     <div>
-      <Avatar className="h-8 w-8">
+      <Avatar className="h-6 w-6">
         <AvatarImage src="/user.png" />
-        {/* <AvatarFallback>
-          {user?.given_name?.charAt(0)}
-          {user?.family_name?.charAt(0)}
-        </AvatarFallback> */}
       </Avatar>
     </div>
   );
