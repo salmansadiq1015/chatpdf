@@ -47,7 +47,8 @@ export default function Conversation({ params }: { params: any }) {
 
   const isLoading = form.formState.isSubmitting;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>,event: any) => {
+    event.preventDefault();
     try {
       const userMessage: ChatCompletionRequestMessage = {
         role: "user",
@@ -69,7 +70,7 @@ export default function Conversation({ params }: { params: any }) {
       // TODO: Open Pro Model
       console.log(error);
     } finally {
-      router.refresh();
+      // router.refresh();
     }
   };
 
