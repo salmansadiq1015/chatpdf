@@ -86,7 +86,7 @@ export default function Conversation({ params }: { params: any }) {
   }, [messages]);
 
   return (
-    <div className="w-full h-[100vh] fixed  ">
+    <div className="w-full h-[100vh]  ">
       <div className="relative w-full h-[100vh] overflow-hidden ">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 w-full bg-green-600 text-white py-3 px-2 ">
