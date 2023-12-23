@@ -227,7 +227,10 @@
 /* ----------Section5------- */
 .section5-icon,
 .section5-icon2,
-.section5-icon3 {
+.section5-icon3,
+.section5-icon4,
+.section5-icon5,
+.section5-icon6 {
   position: relative;
   width: 5rem;
   height: 5rem;
@@ -259,6 +262,28 @@
   box-shadow: 1rem 1rem 4rem 1rem rgb(4, 209, 255);
 }
 
+.section5-icon6::before {
+  content: "";
+  position: absolute;
+  width: 0.3rem;
+  height: 0.3rem;
+  background: rgb(102, 255, 0);
+  border-radius: 50%;
+  animation: cond1 3s linear infinite;
+  box-shadow: 1rem 1rem 4rem 1rem rgb(102, 255, 0);
+}
+
+.section5-icon5::before {
+  content: "";
+  position: absolute;
+  width: 0.3rem;
+  height: 0.3rem;
+  background: rgb(255, 251, 0);
+  border-radius: 50%;
+  animation: cond1 3s linear infinite;
+  box-shadow: 1rem 1rem 4rem 1rem rgb(255, 251, 0);
+}
+
 @keyframes cond1 {
   0% {
     transform: rotate(0deg) translate(39px) rotate(0deg);
@@ -277,6 +302,17 @@
   border-radius: 50%;
   animation: cond2 3s linear infinite;
   box-shadow: 1rem 1rem 4rem 1rem rgb(255, 159, 4);
+}
+
+.section5-icon4::before {
+  content: "";
+  position: absolute;
+  width: 0.3rem;
+  height: 0.3rem;
+  background: rgb(166, 0, 255);
+  border-radius: 50%;
+  animation: cond2 3s linear infinite;
+  box-shadow: 1rem 1rem 4rem 1rem rgb(166, 0, 255);
 }
 
 @keyframes cond2 {

@@ -2,9 +2,6 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import "./home.css";
 import { ArrowRight } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { FaCalendarAlt } from "react-icons/fa";
-import { BiSolidBot } from "react-icons/bi";
-import { BsDatabaseFill } from "react-icons/bs";
 import Link from "next/link";
 import Pricing from "./pricing/page";
 import Image from "next/image";
@@ -14,6 +11,8 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Footer from "@/components/Footer";
 import Comment from "@/components/Comment";
 import Navbar from "@/components/Navbar";
+import Section5 from "@/components/Home/Section5";
+import Section6 from "@/components/Home/Section6";
 
 export default async function Home() {
   const { getUser } = getKindeServerSession();
@@ -262,85 +261,7 @@ export default async function Home() {
 
           {/* ---------Section 5-------- */}
           <section className=" w-full min-h-screen mt-[4rem] rounded-md py-[4rem] px-2 sm:mt-[7rem] bg-white z-30 ">
-            <div className="section5-content flex flex-col gap-4">
-              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 w-full ">
-                <div className=" flex flex-col gap-2">
-                  <span className="text-lg text-blue-600  ">
-                    SECURITY - RELIABILITY - INNOVATION
-                  </span>
-                  <h1
-                    className=" text-3xl sm:text-4xl font-bold text-black w-full"
-                    style={{ textShadow: "-1px 1px 0px #888" }}
-                  >
-                    Why Choose ChatDoc.ai?
-                  </h1>
-                </div>
-                {/*  */}
-                <p className="text-justify text-lg text-zinc-600">
-                  At the heart of our mission is the empowerment of individuals
-                  and business leaders worldwide through seamless AI adoption,
-                  boosting productivity effortlessly.
-                </p>
-              </div>
-
-              {/* ----------- */}
-              <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3  mt-[3rem]">
-                {/* con1 */}
-                <div
-                  className="condition1 bg-white rounded-md py-[3.5rem] px-[1rem]
-            shadow-lg cursor-pointer flex flex-col gap-8 items-center justify-center"
-                >
-                  <div className="section5-icon">
-                    <FaCalendarAlt />
-                  </div>
-                  <h3 className="text-2xl text-black font-extrabold">
-                    Chat History
-                  </h3>
-                  <p className="text-base text-zinc-500 text-justify ">
-                    Take a look at each and every conversation that&apos;s taken
-                    place within any of your chatbots.
-                  </p>
-                  <span className="w-[10rem] h-[2px] bg-blue-500 rounded-md"></span>
-                </div>
-
-                {/* con2 */}
-
-                <div
-                  className="condition1 bg-white rounded-md py-[3.5rem] px-[1rem]
-            shadow-lg cursor-pointer flex flex-col gap-8 items-center justify-center"
-                >
-                  <div className="section5-icon2">
-                    <BiSolidBot />
-                  </div>
-                  <h3 className="text-2xl text-black font-bold">
-                    GPT-3.5-turbo & GPT-4 Support
-                  </h3>
-                  <p className="text-base text-zinc-500 text-justify ">
-                    Choose which language model is best for you and your needs
-                    and select a plan accordingly.
-                  </p>
-                  <span className="w-[10rem] h-[2px] bg-blue-500 rounded-md"></span>
-                </div>
-                <div
-                  className="condition1 bg-white rounded-md py-[3.5rem] px-[1rem]
-            shadow-lg cursor-pointer flex flex-col gap-8 items-center justify-center"
-                >
-                  <div className="section5-icon3">
-                    <BsDatabaseFill />
-                  </div>
-                  <h3 className="text-2xl text-black font-bold">
-                    Upload Your Data
-                  </h3>
-                  <p className="text-base text-zinc-500 text-justify ">
-                    Upload PDFs, TXT, CSV files into your ChatDoc and interect
-                    with your custom data.
-                  </p>
-                  <span className="w-[10rem] h-[2px] bg-blue-500 rounded-md"></span>
-                </div>
-
-                {/* ----------- */}
-              </div>
-            </div>
+            <Section5 />
           </section>
 
           <div className="w-full min-h-screen">
@@ -363,88 +284,7 @@ export default async function Home() {
 
           {/* ----------------Section 6--------- */}
           <section className="w-full min-h-screen z-30 bg-blue-200 mt-[0rem] sm:mt-[6rem] py-[3rem] rounded-sm shadow-2xl">
-            <div className="section6-content flex flex-col gap-4 items-center justify-center">
-              <h1 className="text-2xl sm:text-4xl font-bold text-black text-center">
-                Here&apos;s Just A Few Ways You Can Use our Chatbots
-              </h1>
-              <p className="text-lg sm:text-2xl font-light text-blue-500 text-center">
-                We have a range of plans for businesses at all stages from
-                startups to enterprise companies
-              </p>
-            </div>
-            {/* case1 */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 mt-[3rem] bg-blue-600 ">
-              <div className="flex flex-col gap-4 py-[1.5rem] px-[1rem]">
-                <h2
-                  className="text-2xl sm:text-3xl font-bold text-white "
-                  style={{ textShadow: "-1px 1px 0px #000" }}
-                >
-                  USE CASE 1 -{" "}
-                  <span className="font-medium">PERSONAL ASSISTANT</span>
-                </h2>
-                <p className="text-base text-zinc-200 font-light mt-3 text-justify">
-                  Once you&apos;ve uploaded all of your data, in the form of any
-                  CSV, PDF, file or text you can talk with your chatbot and ask
-                  anything you want to quickly find the answers you&apos;re
-                  looking for.
-                </p>
-                <p className="text-base text-zinc-200 font-light mt-3 text-justify">
-                  You can also generate useful content, using the data to help
-                  you with your work, such as letter, writing, emails, social
-                  media posts, or even blog posts.
-                </p>
-                <p className="text-base text-zinc-200 font-light mt-3 text-justify">
-                  It&apos;s like having Chat GPT at your fingertips, but it
-                  specialises in just your business and your needs.
-                </p>
-              </div>
-              <div className="box">
-                <Image
-                  src="/c1.webp"
-                  alt="case1"
-                  width={600}
-                  height={330}
-                  className="w-full h-full"
-                />
-              </div>
-            </div>
-
-            {/* case1 */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 mt-[3rem] bg-blue-600 ">
-              <div className="">
-                <Image
-                  src="/c2.webp"
-                  alt="case1"
-                  width={500}
-                  height={280}
-                  className="w-full h-full"
-                />
-              </div>
-              <div className="flex flex-col gap-4 py-[1.5rem] px-[1rem]">
-                <h2
-                  className="text-2xl sm:text-3xl font-bold text-white "
-                  style={{ textShadow: "-1px 1px 0px #000" }}
-                >
-                  USE CASE 2 -{" "}
-                  <span className="font-medium"> ONBOARDING & TRAINING</span>
-                </h2>
-                <p className="text-lg text-zinc-200 font-light mt-3 text-justify">
-                  Our chatbots are perfect to help onboard and train new
-                  employees.
-                </p>
-                <p className="text-lg text-zinc-200 font-light mt-3 text-justify">
-                  From day one, newcomers will feel a sense of belonging and
-                  clarity, all thanks to this efficient helper that knows your
-                  business inside out.
-                </p>
-                <p className="text-lg text-zinc-200 mt-3 text-justify">
-                  An efficient, consistent, and friendly onboarding experience
-                  that leaves a lasting positive impression. New hires get up to
-                  speed faster, reducing the time and resources traditionally
-                  spent on lengthy training processes.
-                </p>
-              </div>
-            </div>
+            <Section6 />
           </section>
           {/* -----------Comment Section--------- */}
           <section

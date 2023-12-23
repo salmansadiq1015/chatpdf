@@ -11,6 +11,7 @@ import { IoClose } from "react-icons/io5";
 import { DiGoogleAnalytics } from "react-icons/di";
 import { FaRobot } from "react-icons/fa6";
 import { FiShare2 } from "react-icons/fi";
+import { IoIosColorPalette } from "react-icons/io";
 
 export default function Sidebar({ isShow }: { isShow: any }) {
   const [id, setId] = useState("");
@@ -152,6 +153,21 @@ export default function Sidebar({ isShow }: { isShow: any }) {
                 Embed / Share
               </Link>
 
+              <Link
+                id="appearance"
+                href={`/dashboard/${id}/appearance`}
+                className={`flex gap-1 items-center text-white rounded-md py-[6px] px-2 border  border-zinc-200
+              hover:bg-blue-500 hover:text-white hover:shadow-lg transition-colors ${
+                isLinkActive(`/dashboard/${id}/appearance`)
+                  ? "bg-blue-500 text-white"
+                  : ""
+              }`}
+              >
+                <IoIosColorPalette size="22" />
+                Appearance
+              </Link>
+
+              {/*  */}
               <Link
                 id="setting"
                 href={`/dashboard/${id}/setting`}

@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/admin/[dashboard]/page.js", "src/components/UserMessages.tsx", "src/app/controller/commentController.js", "src/app/dashboard/[fileid]/links/page.tsx", "src/app/dashboard/[fileid]/(models)/conversation/page.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/admin/[dashboard]/page.js", "src/components/UserMessages.tsx", "src/app/controller/commentController.js", "src/app/dashboard/[fileid]/links/page.tsx", "src/app/dashboard/[fileid]/(models)/conversation/page.tsx", "src/app/api/botSitting/route.js", "src/app/api/botSitting/[id]/route.js"],
   "exclude": ["node_modules"]
 }

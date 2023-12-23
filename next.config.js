@@ -26,6 +26,9 @@ const nextConfig = {
     domains: [
       "lh3.googleusercontent.com",
       "oaidalleapiprodscus.blob.core.windows.net",
+      "t3.ftcdn.net",
+      "t4.ftcdn.net",
+      "*", //for local development
     ],
   },
 };
