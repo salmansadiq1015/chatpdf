@@ -113,7 +113,7 @@ export default function Conversation({ params }: { params: any }) {
     <div className="w-full h-[100vh]">
       <div className="relative w-full h-full overflow-hidden ">
         <div
-          className="fixed top-0 left-0 flex items-center gap-2 w-full text-white py-3 px-2 "
+          className="fixed top-0 left-0 flex items-center gap-2 w-full text-white py-3 px-2 z-[9999]"
           style={{ background: color }}
         >
           <div className="w-[2.5rem] h-[2.5rem] rounded-full overflow-hidden">
