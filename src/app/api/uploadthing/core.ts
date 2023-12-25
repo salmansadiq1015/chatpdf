@@ -81,40 +81,37 @@ const onUploadComplete = async ({
 
     const pageLevelDocs = await loader.load();
 
-    const pagesAmt = pageLevelDocs.length;
+    // const pagesAmt = pageLevelDocs.length;
 
-    console.log(pagesAmt);
+    // console.log(pagesAmt);
 
-    const { subscriptionPlan } = metadata;
-    const { isSubscribed } = subscriptionPlan;
+    // const { subscriptionPlan } = metadata;
+    // const { isSubscribed } = subscriptionPlan;
 
-    const isProExceeded =
-      pagesAmt > PLANS.find((plan) => plan.name === "Pro")!.pagesPerPdf;
-    const isFreeExceeded =
-      pagesAmt > PLANS.find((plan) => plan.name === "Free")!.pagesPerPdf;
+    // const isProExceeded =
+    //   pagesAmt > PLANS.find((plan) => plan.name === "Pro")!.pagesPerPdf;
+    // const isFreeExceeded =
+    //   pagesAmt > PLANS.find((plan) => plan.name === "Free")!.pagesPerPdf;
 
-    if (isSubscribed) {
-      await db.file.update({
-        data: {
-          uploadStatus: "SUCCESS",
-        },
-        where: {
-          id: createdFile.id,
-        },
-      });
-    } else if (!isSubscribed && isFreeExceeded) {
-      await db.file.update({
-        data: {
-          uploadStatus: "FAILED",
-        },
-        where: {
-          id: createdFile.id,
-        },
-      });
-    }
-
-    // || (!isSubscribed && isFreeExceeded)
-    // const multiple = 1;
+    // if (isSubscribed) {
+    //   await db.file.update({
+    //     data: {
+    //       uploadStatus: "SUCCESS",
+    //     },
+    //     where: {
+    //       id: createdFile.id,
+    //     },
+    //   });
+    // } else if (!isSubscribed && isFreeExceeded) {
+    //   await db.file.update({
+    //     data: {
+    //       uploadStatus: "FAILED",
+    //     },
+    //     where: {
+    //       id: createdFile.id,
+    //     },
+    //   });
+    // }
 
     // vectorize and index the entire document
     const pinecone = await getPineconeClient();
